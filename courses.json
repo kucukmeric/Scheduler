@@ -7,26 +7,26 @@
         "code": "CS101",
         "name": "Intro to Programming I",
         "sections": [
-          { "num": "1", "instructor": "D. Ritchie", "blocks": [0, 8] },
-          { "num": "2", "instructor": "K. Thompson", "blocks": [4, 12] },
-          { "num": "3", "instructor": "B. Stroustrup", "blocks": [2, 10] }
+          { "num": "1", "instructor": "D. Ritchie", "blocks": [0, 1, 18] },
+          { "num": "2", "instructor": "K. Thompson", "blocks": [9, 10, 27] },
+          { "num": "3", "instructor": "B. Stroustrup", "blocks": [2, 3, 20] }
         ]
       },
       {
         "code": "CS201",
         "name": "Algorithms & Data Structures",
         "sections": [
-          { "num": "1", "instructor": "A. Turing", "blocks": [0, 8] },
-          { "num": "2", "instructor": "G. Hopper", "blocks": [4, 12] },
-          { "num": "3", "instructor": "J. von Neumann", "blocks": [2, 10] }
+          { "num": "1", "instructor": "A. Turing", "blocks": [11, 12, 29] },
+          { "num": "2", "instructor": "G. Hopper", "blocks": [5, 6, 23] },
+          { "num": "3", "instructor": "J. von Neumann", "blocks": [18, 19, 36] }
         ]
       },
       {
         "code": "CS224",
         "name": "Computer Organization",
         "sections": [
-          { "num": "1", "instructor": "S. Wozniak", "blocks": [6, 14] },
-          { "num": "2", "instructor": "G. Moore", "blocks": [10, 18] }
+          { "num": "1", "instructor": "S. Wozniak", "blocks": [2, 20, 38] },
+          { "num": "2", "instructor": "G. Moore", "blocks": [12, 30, 41] }
         ]
       }
     ]
@@ -39,26 +39,26 @@
         "code": "MATH101",
         "name": "Calculus I",
         "sections": [
-          { "num": "1", "instructor": "G. Leibniz", "blocks": [4, 16] },
-          { "num": "2", "instructor": "I. Newton", "blocks": [2, 10] },
-          { "num": "3", "instructor": "P. de Fermat", "blocks": [12, 17] }
+          { "num": "1", "instructor": "G. Leibniz", "blocks": [9, 11, 27] },
+          { "num": "2", "instructor": "I. Newton", "blocks": [2, 3, 20] },
+          { "num": "3", "instructor": "P. de Fermat", "blocks": [6, 7, 24] }
         ]
       },
       {
         "code": "MATH102",
         "name": "Calculus II",
         "sections": [
-          { "num": "1", "instructor": "B. Riemann", "blocks": [0, 14] },
-          { "num": "2", "instructor": "A. Cauchy", "blocks": [5, 16] }
+          { "num": "1", "instructor": "B. Riemann", "blocks": [0, 18, 36] },
+          { "num": "2", "instructor": "A. Cauchy", "blocks": [14, 15, 32] }
         ]
       },
       {
         "code": "MATH225",
         "name": "Linear Algebra",
         "sections": [
-          { "num": "1", "instructor": "L. Euler", "blocks": [1, 16] },
-          { "num": "2", "instructor": "C.F. Gauss", "blocks": [6, 14] },
-          { "num": "3", "instructor": "E. Noether", "blocks": [9, 17] }
+          { "num": "1", "instructor": "L. Euler", "blocks": [1, 19, 37] },
+          { "num": "2", "instructor": "C.F. Gauss", "blocks": [11, 29, 42] },
+          { "num": "3", "instructor": "E. Noether", "blocks": [6, 24, 38] }
         ]
       }
     ]
@@ -71,9 +71,9 @@
         "code": "PHYS102",
         "name": "General Physics II",
         "sections": [
-          { "num": "1", "instructor": "I. Newton", "blocks": [0, 3] },
-          { "num": "2", "instructor": "A. Einstein", "blocks": [4, 7] },
-          { "num": "3", "instructor": "M. Curie", "blocks": [8, 11] }
+          { "num": "1", "instructor": "I. Newton", "blocks": [0, 2, 18] },
+          { "num": "2", "instructor": "A. Einstein", "blocks": [9, 11, 27] },
+          { "num": "3", "instructor": "M. Curie", "blocks": [3, 21, 39] }
         ]
       }
     ]
@@ -86,9 +86,9 @@
         "code": "CHEM205",
         "name": "Organic Chemistry",
         "sections": [
-          { "num": "1", "instructor": "L. Pauling", "blocks": [13, 19] },
-          { "num": "2", "instructor": "D. Hodgkin", "blocks": [1, 9] },
-          { "num": "3", "instructor": "R. Franklin", "blocks": [5, 13] }
+          { "num": "1", "instructor": "L. Pauling", "blocks": [30, 31, 44] },
+          { "num": "2", "instructor": "D. Hodgkin", "blocks": [1, 2, 19] },
+          { "num": "3", "instructor": "R. Franklin", "blocks": [14, 15, 32] }
         ]
       }
     ]
@@ -101,17 +101,17 @@
         "code": "HUM101",
         "name": "Cultures & Civilizations I",
         "sections": [
-          { "num": "1", "instructor": "Plato", "blocks": [16, 18] },
-          { "num": "2", "instructor": "S. de Beauvoir", "blocks": [14, 3] },
-          { "num": "3", "instructor": "F. Douglass", "blocks": [8, 16] }
+          { "num": "1", "instructor": "Plato", "blocks": [7, 8, 25] },
+          { "num": "2", "instructor": "S. de Beauvoir", "blocks": [14, 15, 33] },
+          { "num": "3", "instructor": "F. Douglass", "blocks": [1, 19, 37] }
         ]
       },
       {
         "code": "HUM111",
         "name": "Ancient & Medieval History",
         "sections": [
-          { "num": "1", "instructor": "Herodotus", "blocks": [1, 9] },
-          { "num": "2", "instructor": "Tacitus", "blocks": [4, 12] }
+          { "num": "1", "instructor": "Herodotus", "blocks": [12, 13, 28] },
+          { "num": "2", "instructor": "Tacitus", "blocks": [5, 6, 23] }
         ]
       }
     ]
@@ -124,17 +124,17 @@
         "code": "EE201",
         "name": "Digital Design",
         "sections": [
-          { "num": "1", "instructor": "N. Tesla", "blocks": [2, 14] },
-          { "num": "2", "instructor": "T. Edison", "blocks": [5, 16] },
-          { "num": "3", "instructor": "M. Faraday", "blocks": [11, 19] }
+          { "num": "1", "instructor": "N. Tesla", "blocks": [2, 20, 38] },
+          { "num": "2", "instructor": "T. Edison", "blocks": [14, 15, 32] },
+          { "num": "3", "instructor": "M. Faraday", "blocks": [7, 8, 26] }
         ]
       },
       {
         "code": "EE202",
         "name": "Circuit Theory",
         "sections": [
-          { "num": "1", "instructor": "G. Ohm", "blocks": [1, 15] },
-          { "num": "2", "instructor": "A. Volta", "blocks": [6, 19] }
+          { "num": "1", "instructor": "G. Ohm", "blocks": [1, 19, 36] },
+          { "num": "2", "instructor": "A. Volta", "blocks": [15, 16, 33] }
         ]
       }
     ]
@@ -147,9 +147,9 @@
         "code": "ME101",
         "name": "Introduction to ME",
         "sections": [
-          { "num": "1", "instructor": "J. Watt", "blocks": [4, 13] },
-          { "num": "2", "instructor": "K. Benz", "blocks": [10, 18] },
-          { "num": "3", "instructor": "H. Ford", "blocks": [0, 11] }
+          { "num": "1", "instructor": "J. Watt", "blocks": [9, 10, 28] },
+          { "num": "2", "instructor": "K. Benz", "blocks": [6, 7, 24] },
+          { "num": "3", "instructor": "H. Ford", "blocks": [0, 1, 18] }
         ]
       }
     ]
@@ -162,9 +162,9 @@
         "code": "POLS201",
         "name": "Foundations of Politics",
         "sections": [
-          { "num": "1", "instructor": "N. Machiavelli", "blocks": [7, 12] },
-          { "num": "2", "instructor": "H. Arendt", "blocks": [9, 18] },
-          { "num": "3", "instructor": "J. Locke", "blocks": [1, 15] }
+          { "num": "1", "instructor": "N. Machiavelli", "blocks": [16, 17, 34] },
+          { "num": "2", "instructor": "H. Arendt", "blocks": [5, 23, 41] },
+          { "num": "3", "instructor": "J. Locke", "blocks": [2, 20, 38] }
         ]
       }
     ]
@@ -177,16 +177,16 @@
         "code": "MAN101",
         "name": "Introduction to Business",
         "sections": [
-          { "num": "1", "instructor": "A. Smith", "blocks": [2, 12] },
-          { "num": "2", "instructor": "J.M. Keynes", "blocks": [8, 16] }
+          { "num": "1", "instructor": "A. Smith", "blocks": [11, 12, 29] },
+          { "num": "2", "instructor": "J.M. Keynes", "blocks": [7, 8, 25] }
         ]
       },
       {
         "code": "MAN213",
         "name": "Financial Accounting",
         "sections": [
-          { "num": "1", "instructor": "L. Pacioli", "blocks": [4, 14] },
-          { "num": "2", "instructor": "I. Fisher", "blocks": [9, 19] }
+          { "num": "1", "instructor": "L. Pacioli", "blocks": [1, 19, 37] },
+          { "num": "2", "instructor": "I. Fisher", "blocks": [15, 16, 34] }
         ]
       }
     ]

@@ -1,15 +1,21 @@
-/* --- DARK AUTUMN THEME VARIABLES & GLOBAL STYLES --- */
+/* --- AUTUMN TEAL THEME VARIABLES & GLOBAL STYLES --- */
 :root {
   /* Colors */
-  --primary-color: #d97706; /* Warm Amber/Orange */
-  --primary-hover: #b45309;
-  --background-color: #27272a; /* Zinc 800 - Dark Charcoal */
+  --primary-color: #d97706; /* Amber 600 */
+  --primary-hover: #b45309; /* Amber 700 */
+  --accent-color: #0d9488; /* Teal 600 - The bluish-green tone */
+  --accent-hover: #0f766e; /* Teal 700 */
+  
+  --background-color: #262626; /* Neutral 800 - Dark earthy background */
   --sidebar-background: #ffffff;
-  --card-background: #ffffff;
-  --text-color: #3f3f46;
-  --light-text-color: #78716c;
-  --border-color: #e7e5e4;
-  --hover-bg-color: #f5f5f4; /* Stone-100 */
+  --card-background: #ffffff; /* Using white for high contrast cards */
+
+  --text-color: #404040; /* Neutral 700 - Softer than black */
+  --light-text-color: #78716c; /* Stone 500 - Muted for secondary text */
+
+  --border-color: #e7e5e4; /* Stone 200 - Soft border */
+  --hover-bg-color: #f5f5f4; /* Stone 100 - Pale, warm hover background */
+  --disabled-bg-color: #fafaf9; /* Stone 50 */
 
   /* Typography & Spacing */
   --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -17,7 +23,7 @@
 
   /* Components */
   --border-radius: 8px;
-  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   --transition-speed: 0.2s;
 }
 
@@ -26,6 +32,22 @@ body {
   margin: 0; 
   background-color: var(--background-color); 
   color: var(--text-color);
-  -webkit-font-smoothing: antialiased; /* Smoother fonts on some displays */
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar styles to prevent resizing issues and match the theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--hover-bg-color);
+  border-radius: var(--border-radius);
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d4d4; /* Neutral 300 */
+  border-radius: var(--border-radius);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3; /* Neutral 400 */
 }

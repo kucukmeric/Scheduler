@@ -18,18 +18,24 @@
     </header>
     
     <div class="sidebar-content">
+      <!-- RESTRUCTURED: Courses Section -->
       <div class="sidebar-section" id="courses-section">
-        <h2>Courses</h2>
+        <div class="sidebar-section-header">
+          <h3>Courses</h3>
+          <button class="header-add-btn" id="add-course-btn" aria-label="Add Course"><i class="fas fa-plus"></i></button>
+        </div>
         <div class="selection-container" id="course-selection-list">
           <!-- User's selected courses will be dynamically inserted here -->
         </div>
-        <!-- UPDATED: Icon and class for consistency -->
-        <button class="add-item-btn" id="add-course-btn"><i class="fas fa-plus"></i> Add Course</button>
       </div>
 
-      <div class="sidebar-section">
-        <h2>Sorting</h2>
-        <div class="selection-container" id="sort-selection">
+      <!-- RESTRUCTURED: Sorting Section -->
+      <div class="sidebar-section" id="sorting-section">
+        <div class="sidebar-section-header">
+          <h3>Sorting Rules</h3>
+          <button class="header-add-btn" id="add-rule-btn" aria-label="Add Sorting Rule"><i class="fas fa-plus"></i></button>
+        </div>
+        <div class="selection-container" id="sort-selection-list">
           <!-- Sorting rules will be dynamically inserted here -->
         </div>
       </div>
@@ -44,10 +50,12 @@
 
 <!-- Add Course Modal -->
 <div class="modal-overlay" id="add-course-modal-overlay">
-  <div class="modal">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <header class="modal-header">
-      <h3>Add a Course</h3>
-      <button class="close-modal-btn"><i class="fas fa-times"></i></button>
+      <h3 id="modal-title">Add a Course</h3>
+      <button class="close-modal-btn" aria-label="Close modal">
+        <i class="fas fa-times"></i>
+      </button>
     </header>
     <div class="modal-content">
       <div class="modal-column" id="department-list">
@@ -62,10 +70,6 @@
   </div>
 </div>
 
-<script src="js/modules/core.js"></script>
-<script src="js/modules/ui/timetableRenderer.js"></script>
-<script src="js/modules/ui/sortableList.js"></script>
-<script src="js/modules/ui/courseManager.js"></script>
-<script src="js/main.js"></script>
+<script src="js/main.js" type="module"></script>
 </body>
 </html>

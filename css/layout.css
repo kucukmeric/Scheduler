@@ -7,8 +7,9 @@
   gap: var(--standard-padding);
 }
 .sidebar { 
-  width: 280px; 
-  min-width: 280px; 
+  /* UPDATED: Increased sidebar width */
+  width: 340px; 
+  min-width: 340px; 
   background: var(--sidebar-background); 
   border-radius: var(--border-radius); 
   box-shadow: var(--card-shadow); 

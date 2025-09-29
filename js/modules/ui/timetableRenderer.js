@@ -1,6 +1,6 @@
-function renderTimetable(timetable, index, days, hours, colors) {
+export function renderTimetable(timetable, index, days, hours, colors) {
     const timetableContainer = document.getElementById('timetable-container');
-    if (!timetableContainer) return '';
+    if (!timetableContainer) return;
 
     const courseToColor = new Map();
     let colorIndex = 0;
@@ -14,28 +14,34 @@ function renderTimetable(timetable, index, days, hours, colors) {
 
     let headerHtml = `<thead><tr><th></th>${days.map(d => `<th>${d}</th>`).join('')}</tr></thead>`;
     let bodyHtml = '<tbody>';
+    
+    // Iterate through each hour of the day
     for (let h = 0; h < hours.length; h++) {
         bodyHtml += `<tr><th>${hours[h]}</th>`;
-        for (let d = 0; d < 5; d++) {
+        
+        // Iterate through each day of the week
+        for (let d = 0; d < days.length; d++) {
             let cellContent = '';
-            let isOccupied = false;
-
+            
+            // The 5th hour (index 4) is always Lunch
             if (h === 4) {
                 cellContent = `<div class='lunch'>LUNCH</div>`;
             } else {
-                let logicalHour = h < 4 ? Math.floor(h / 2) : Math.floor((h - 1) / 2);
-                let bitToCheck = (d * 4) + logicalHour;
-                for (let s of timetable.selection) {
-                    if (s.blocks.includes(bitToCheck)) {
-                        const courseCode = s.id.split('-')[0];
-                        let color = courseToColor.get(courseCode);
-                        isOccupied = true;
-                        cellContent = `<div class="occupied" style='background:${color}'>
-                            <div class='occupied-cell-content' data-info='${s.id} | ${s.instructor}'>
-                                ${s.id.split('-')[0]}<br/>(${s.instructor})
+                // Calculate the absolute block index for the current day and hour
+                const blockIndex = d * hours.length + h;
+                
+                // Find if any selected section occupies this block
+                for (const section of timetable.selection) {
+                    if (section.blocks.includes(blockIndex)) {
+                        const courseCode = section.id.split('-')[0];
+                        const color = courseToColor.get(courseCode);
+                        // REFACTORED: Use a CSS custom property instead of an inline style.
+                        cellContent = `<div class="occupied" style='--course-color: ${color}'>
+                            <div class='occupied-cell-content' data-info='${section.id} | ${section.instructor}'>
+                                ${courseCode}<br/>(${section.instructor.split(' ').pop()})
                             </div>
                         </div>`;
-                        break;
+                        break; // Found the section for this block, no need to check others
                     }
                 }
             }
