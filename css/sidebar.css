@@ -1,0 +1,91 @@
+/* --- SIDEBAR SECTIONS --- */
+.sidebar-header { padding: var(--standard-padding); border-bottom: 1px solid var(--border-color); flex-shrink: 0; }
+.sidebar-header h1 { margin: 0; font-size: 24px; color: var(--text-color); }
+.sidebar-section { padding: var(--standard-padding); position: relative; display: flex; flex-direction: column; flex-basis: 50%; overflow-y: auto; }
+.sidebar-section + .sidebar-section { border-top: 1px solid var(--border-color); }
+.sidebar-section h2 { margin: 0 0 15px 0; font-size: 18px; flex-shrink: 0; }
+.selection-container { display: flex; flex-direction: column; gap: var(--border-radius); }
+#course-selection-list { flex-grow: 1; }
+
+/* --- UNIFIED LIST ITEM COMPONENT --- */
+.list-item {
+  display: flex;
+  align-items: stretch; /* NEW: Forces all children to be the same height */
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  user-select: none;
+  background-color: var(--card-background);
+  transition: border-color var(--transition-speed);
+}
+.list-item:hover {
+  border-color: #d1d5db;
+}
+.list-item-action, .list-item-main, .list-item-picker {
+  display: flex; /* NEW: Enables vertical centering for the content inside */
+  align-items: center;
+}
+.list-item-action {
+  color: var(--light-text-color); cursor: pointer; padding: 12px 14px;
+  border-right: 1px solid var(--border-color);
+  transition: color var(--transition-speed);
+}
+.list-item-action:hover { color: #dc2626; }
+.list-item-main {
+  padding: 12px 15px;
+  flex-grow: 1;
+}
+
+/* NEW: Wrapper for picker and its dropdown */
+.picker-wrapper {
+  position: relative;
+}
+
+.list-item-picker {
+  border-left: 1px solid var(--border-color); padding: 12px 0;
+  cursor: pointer; transition: background-color var(--transition-speed);
+  justify-content: center;
+  min-width: 50px; height: 100%;
+}
+.picker-wrapper:hover .list-item-picker {
+  background-color: var(--hover-bg-color);
+}
+
+/* --- UNIFIED DROPDOWN STYLES --- */
+.dropdown-menu {
+  display: none; position: absolute; left: 0; top: 100%;
+  margin-top: 4px; background: white; border: 1px solid var(--border-color);
+  border-radius: var(--border-radius); box-shadow: var(--card-shadow);
+  z-index: 30; width: 150px;
+  overflow: hidden;
+}
+.picker-wrapper:hover .dropdown-menu { display: block; }
+.dropdown-item { padding: 10px 15px; cursor: pointer; transition: background-color var(--transition-speed); }
+.dropdown-item:hover { background-color: var(--hover-bg-color); }
+.dropdown-item.selected { background-color: var(--primary-color); color: white; }
+.dropdown-item.disabled { color: var(--light-text-color); background-color: #fafaf9; cursor: not-allowed; }
+
+/* --- BUTTONS & MODALS --- */
+.add-item-btn {
+  background: transparent; border: 2px dashed var(--border-color);
+  border-radius: var(--border-radius); color: var(--light-text-color);
+  font-weight: 500; cursor: pointer; padding: 12px;
+  transition: all var(--transition-speed) ease-in-out; display: flex;
+  align-items: center; justify-content: center; gap: 8px; flex-shrink: 0;
+}
+#courses-section .add-item-btn { margin-top: 15px; }
+#sort-selection + .add-item-btn { margin-top: var(--border-radius); }
+.add-item-btn:hover { border-color: var(--primary-color); color: var(--primary-color); }
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 100; }
+.modal-overlay.visible { display: flex; }
+.modal { background: white; border-radius: var(--border-radius); width: 90%; max-width: 600px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; max-height: 80vh; }
+.modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
+.close-modal-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--light-text-color); transition: color var(--transition-speed); }
+.modal-content { display: flex; overflow: hidden; }
+.modal-column { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.list-container { overflow-y: auto; }
+.modal-list-item { padding: 12px 20px; cursor: pointer; transition: background-color var(--transition-speed); }
+.modal-list-item:hover { background-color: var(--hover-bg-color); }
+.modal-list-item.selected { background-color: var(--primary-color); color: white; }
+.rule-picker-popover { position: absolute; background: white; border-radius: var(--border-radius); box-shadow: var(--card-shadow); z-index: 20; width: 100%; display: none; }
+.rule-picker-popover.visible { display: block; }

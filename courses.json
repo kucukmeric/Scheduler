@@ -1,0 +1,194 @@
+[
+  {
+    "deptCode": "CS",
+    "deptName": "Computer Science",
+    "courses": [
+      {
+        "code": "CS101",
+        "name": "Intro to Programming I",
+        "sections": [
+          { "num": "1", "instructor": "D. Ritchie", "blocks": [0, 8] },
+          { "num": "2", "instructor": "K. Thompson", "blocks": [4, 12] },
+          { "num": "3", "instructor": "B. Stroustrup", "blocks": [2, 10] }
+        ]
+      },
+      {
+        "code": "CS201",
+        "name": "Algorithms & Data Structures",
+        "sections": [
+          { "num": "1", "instructor": "A. Turing", "blocks": [0, 8] },
+          { "num": "2", "instructor": "G. Hopper", "blocks": [4, 12] },
+          { "num": "3", "instructor": "J. von Neumann", "blocks": [2, 10] }
+        ]
+      },
+      {
+        "code": "CS224",
+        "name": "Computer Organization",
+        "sections": [
+          { "num": "1", "instructor": "S. Wozniak", "blocks": [6, 14] },
+          { "num": "2", "instructor": "G. Moore", "blocks": [10, 18] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "MATH",
+    "deptName": "Mathematics",
+    "courses": [
+      {
+        "code": "MATH101",
+        "name": "Calculus I",
+        "sections": [
+          { "num": "1", "instructor": "G. Leibniz", "blocks": [4, 16] },
+          { "num": "2", "instructor": "I. Newton", "blocks": [2, 10] },
+          { "num": "3", "instructor": "P. de Fermat", "blocks": [12, 17] }
+        ]
+      },
+      {
+        "code": "MATH102",
+        "name": "Calculus II",
+        "sections": [
+          { "num": "1", "instructor": "B. Riemann", "blocks": [0, 14] },
+          { "num": "2", "instructor": "A. Cauchy", "blocks": [5, 16] }
+        ]
+      },
+      {
+        "code": "MATH225",
+        "name": "Linear Algebra",
+        "sections": [
+          { "num": "1", "instructor": "L. Euler", "blocks": [1, 16] },
+          { "num": "2", "instructor": "C.F. Gauss", "blocks": [6, 14] },
+          { "num": "3", "instructor": "E. Noether", "blocks": [9, 17] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "PHYS",
+    "deptName": "Physics",
+    "courses": [
+      {
+        "code": "PHYS102",
+        "name": "General Physics II",
+        "sections": [
+          { "num": "1", "instructor": "I. Newton", "blocks": [0, 3] },
+          { "num": "2", "instructor": "A. Einstein", "blocks": [4, 7] },
+          { "num": "3", "instructor": "M. Curie", "blocks": [8, 11] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "CHEM",
+    "deptName": "Chemistry",
+    "courses": [
+      {
+        "code": "CHEM205",
+        "name": "Organic Chemistry",
+        "sections": [
+          { "num": "1", "instructor": "L. Pauling", "blocks": [13, 19] },
+          { "num": "2", "instructor": "D. Hodgkin", "blocks": [1, 9] },
+          { "num": "3", "instructor": "R. Franklin", "blocks": [5, 13] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "HUM",
+    "deptName": "Humanities",
+    "courses": [
+      {
+        "code": "HUM101",
+        "name": "Cultures & Civilizations I",
+        "sections": [
+          { "num": "1", "instructor": "Plato", "blocks": [16, 18] },
+          { "num": "2", "instructor": "S. de Beauvoir", "blocks": [14, 3] },
+          { "num": "3", "instructor": "F. Douglass", "blocks": [8, 16] }
+        ]
+      },
+      {
+        "code": "HUM111",
+        "name": "Ancient & Medieval History",
+        "sections": [
+          { "num": "1", "instructor": "Herodotus", "blocks": [1, 9] },
+          { "num": "2", "instructor": "Tacitus", "blocks": [4, 12] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "EE",
+    "deptName": "Electrical Engineering",
+    "courses": [
+      {
+        "code": "EE201",
+        "name": "Digital Design",
+        "sections": [
+          { "num": "1", "instructor": "N. Tesla", "blocks": [2, 14] },
+          { "num": "2", "instructor": "T. Edison", "blocks": [5, 16] },
+          { "num": "3", "instructor": "M. Faraday", "blocks": [11, 19] }
+        ]
+      },
+      {
+        "code": "EE202",
+        "name": "Circuit Theory",
+        "sections": [
+          { "num": "1", "instructor": "G. Ohm", "blocks": [1, 15] },
+          { "num": "2", "instructor": "A. Volta", "blocks": [6, 19] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "ME",
+    "deptName": "Mechanical Engineering",
+    "courses": [
+      {
+        "code": "ME101",
+        "name": "Introduction to ME",
+        "sections": [
+          { "num": "1", "instructor": "J. Watt", "blocks": [4, 13] },
+          { "num": "2", "instructor": "K. Benz", "blocks": [10, 18] },
+          { "num": "3", "instructor": "H. Ford", "blocks": [0, 11] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "POLS",
+    "deptName": "Political Science",
+    "courses": [
+      {
+        "code": "POLS201",
+        "name": "Foundations of Politics",
+        "sections": [
+          { "num": "1", "instructor": "N. Machiavelli", "blocks": [7, 12] },
+          { "num": "2", "instructor": "H. Arendt", "blocks": [9, 18] },
+          { "num": "3", "instructor": "J. Locke", "blocks": [1, 15] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "MAN",
+    "deptName": "Management",
+    "courses": [
+      {
+        "code": "MAN101",
+        "name": "Introduction to Business",
+        "sections": [
+          { "num": "1", "instructor": "A. Smith", "blocks": [2, 12] },
+          { "num": "2", "instructor": "J.M. Keynes", "blocks": [8, 16] }
+        ]
+      },
+      {
+        "code": "MAN213",
+        "name": "Financial Accounting",
+        "sections": [
+          { "num": "1", "instructor": "L. Pacioli", "blocks": [4, 14] },
+          { "num": "2", "instructor": "I. Fisher", "blocks": [9, 19] }
+        ]
+      }
+    ]
+  }
+]
