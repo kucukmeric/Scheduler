@@ -3,7 +3,6 @@ let departmentsData = [];
 let onUpdateCallback = () => {};
 let userCourses = [];
 
-// DOM Elements
 const modalOverlay = document.getElementById('add-course-modal-overlay');
 const deptListContainer = document.querySelector('#department-list .list-container');
 const courseListContainer = document.querySelector('#course-list .list-container');
@@ -25,7 +24,6 @@ function renderUserCourseList() {
         item.className = 'list-item user-course-item';
         item.dataset.courseCode = userCourse.courseCode;
         
-        // NEW: Added a wrapper div and changed text to "Any"
         item.innerHTML = `
             <div class="list-item-action remove-course-btn" data-course-code="${userCourse.courseCode}">
                 <i class="fas fa-times"></i>
@@ -78,12 +76,18 @@ function populateCourses(deptCode) {
     if (!department) return;
 
     department.courses.forEach(course => {
+        // Dersin ana listede zaten ekli olup olmadığını kontrol et
         const isAdded = userCourses.some(uc => uc.courseCode === course.code);
-        const item = document.createElement('div');
-        item.className = `modal-list-item ${isAdded ? 'disabled' : ''}`;
-        item.dataset.courseCode = course.code;
-        item.textContent = `${course.code} - ${course.name}`;
-        courseListContainer.appendChild(item);
+
+        // GÜNCELLENDİ: Sadece eklenmemiş dersleri modal listesine ekle
+        if (!isAdded) {
+            const item = document.createElement('div');
+            // Artık 'disabled' sınıfına ihtiyaç yok çünkü bu dersler zaten tıklanabilir olacak
+            item.className = `modal-list-item`;
+            item.dataset.courseCode = course.code;
+            item.textContent = `${course.code} - ${course.name}`;
+            courseListContainer.appendChild(item);
+        }
     });
 }
 
@@ -142,4 +146,8 @@ export const CourseManager = {
     },
     getUserCourses: () => userCourses,
     getAllCourses: () => allCoursesFlat,
+    setUserCourses: (newCourses) => {
+        userCourses = newCourses;
+        renderUserCourseList();
+    }
 };

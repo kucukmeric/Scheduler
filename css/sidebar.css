@@ -1,11 +1,4 @@
 /* --- SIDEBAR SECTIONS --- */
-.sidebar-header { 
-  padding: var(--standard-padding); 
-  border-bottom: 1px solid var(--border-color); 
-  flex-shrink: 0; 
-  background-color: var(--hover-bg-color); /* Added subtle header color */
-}
-.sidebar-header h1 { margin: 0; font-size: 24px; color: var(--text-color); }
 .sidebar-section { 
   position: relative; 
   display: flex; 
@@ -19,18 +12,18 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px var(--standard-padding);
-  border-bottom: 1px solid var(--border-color);
   flex-shrink: 0;
 }
 .sidebar-section-header h3 {
   margin: 0;
   font-size: 18px;
+  font-weight: 600;
 }
 .selection-container { 
   display: flex; 
   flex-direction: column; 
   gap: var(--border-radius); 
-  padding: var(--standard-padding);
+  padding: 0 var(--standard-padding) var(--standard-padding) var(--standard-padding);
   flex-grow: 1;
   overflow-y: auto;
 }
@@ -48,7 +41,7 @@
   flex-shrink: 0;
 }
 .list-item:hover {
-  border-color: #d4d4d8; /* Zinc 300 */
+  border-color: #d4d4d8;
 }
 .list-item-action, .list-item-main, .list-item-picker {
   display: flex;
@@ -62,13 +55,11 @@
   align-self: stretch;
   transition: color var(--transition-speed), background-color var(--transition-speed);
 }
-.list-item-action:hover { color: #ef4444; background-color: var(--hover-bg-color); } /* Red 500 */
+.list-item-action:hover { color: #ef4444; background-color: var(--hover-bg-color); }
 .list-item-main {
   padding: 12px 15px;
   flex-grow: 1;
 }
-
-/* FIXED: Wrapper only triggers dropdown on its own hover state */
 .picker-wrapper {
   position: relative;
   align-self: stretch;
@@ -102,7 +93,6 @@
   width: 150px;
   overflow: hidden;
 }
-/* FIXED: Dropdown menu only shows when hovering the wrapper */
 .picker-wrapper:hover .dropdown-menu { display: block; }
 .dropdown-item { padding: 10px 15px; cursor: pointer; transition: background-color var(--transition-speed); }
 .dropdown-item:hover { background-color: var(--hover-bg-color); }
@@ -124,11 +114,9 @@
   color: var(--primary-color);
   background-color: var(--hover-bg-color);
 }
-
-/* REDESIGNED: Autumn-themed modal */
 .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 100; }
 .modal-overlay.visible { display: flex; }
-.modal { background: #fafaf9; /* Stone 50 - Off-white */ border-radius: var(--border-radius); width: 90%; max-width: 700px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; max-height: 80vh; }
+.modal { background: #fafaf9; border-radius: var(--border-radius); width: 90%; max-width: 700px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); display: flex; flex-direction: column; max-height: 80vh; }
 .modal-header { padding: 15px 20px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; }
 .close-modal-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--light-text-color); transition: color var(--transition-speed); }
 .modal-content { display: flex; overflow: hidden; }
@@ -137,7 +125,7 @@
 .modal-column h4 { padding: 10px 20px; margin: 0; background-color: var(--hover-bg-color); font-size: 14px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--light-text-color); }
 .list-container { overflow-y: auto; }
 .modal-list-item { padding: 12px 20px; cursor: pointer; transition: background-color var(--transition-speed), border-left-color var(--transition-speed); border-left: 3px solid transparent; }
-.modal-list-item:hover { background-color: #e7e5e4; } /* Stone 200 */
+.modal-list-item:hover { background-color: #e7e5e4; }
 .modal-list-item.selected { background-color: #e7e5e4; color: var(--primary-hover); border-left-color: var(--primary-color); font-weight: 600; }
 .rule-picker-popover { position: absolute; background: white; border-radius: var(--border-radius); box-shadow: var(--card-shadow); z-index: 20; width: 100%; display: none; }
 .rule-picker-popover.visible { display: block; }

@@ -2,23 +2,18 @@
 .container { 
   display: flex; 
   height: 100vh; 
-  padding: var(--standard-padding);
   box-sizing: border-box; 
   gap: var(--standard-padding);
 }
 .sidebar { 
-  /* UPDATED: Increased sidebar width */
   width: 340px; 
   min-width: 340px; 
   background: var(--sidebar-background); 
-  border-radius: var(--border-radius); 
-  box-shadow: var(--card-shadow); 
   display: flex; 
   flex-direction: column;
   overflow: hidden;
 }
 
-/* This wrapper contains the scrollable sections */
 .sidebar-content {
   flex-grow: 1;
   display: flex;
@@ -27,29 +22,20 @@
 }
 
 .timetable-area { 
-  flex: 1; 
-  background: var(--card-background); 
+  flex-grow: 1;
+  background: var(--content-background);
   border-radius: var(--border-radius); 
-  padding: var(--standard-padding);
   box-shadow: var(--card-shadow); 
-  overflow-y: auto; 
+  overflow: hidden; /* TARAYICI KAYDIRMASINI TAMAMEN ENGELLER */
+  padding: 0; /* İçerik tam oturacak */
+  position: relative;
 }
 
-/* --- RESPONSIVE BREAKPOINTS --- */
-@media (max-width: 1400px) {
-    .timetable-wrapper { width: 900px; }
-    html { font-size: 15px; }
-}
-@media (max-width: 1200px) {
-    .container { flex-direction: column; height: auto; }
-    .sidebar { width: 100%; overflow-y: visible; flex-direction: row; align-items: flex-start; }
-    .sidebar-content { flex-direction: row; }
-    .sidebar-section { flex: 1; }
-    .timetable-wrapper { width: 100%; }
-}
-@media (max-width: 768px) {
-    .container { padding: 10px; gap: 10px; }
-    .sidebar { flex-direction: column; }
-    .timetable-area { padding: 15px; }
-    html { font-size: 14px; }
+.right-bar { 
+  width: 340px; 
+  min-width: 340px; 
+  background: var(--background-color);
+  display: flex; 
+  flex-direction: column;
+  overflow: hidden;
 }
