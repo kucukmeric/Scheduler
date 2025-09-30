@@ -5,6 +5,7 @@ import { SortPanel } from './SortPanel.js';
 import { Modal } from './Modal.js';
 import { TimetableGrid } from './TimetableGrid.js';
 import { DetailsPanel } from './DetailsPanel.js';
+import { ActionHandler } from './ActionHandler.js';
 
 export class UIManager {
     constructor(courseData) {
@@ -13,6 +14,9 @@ export class UIManager {
         this.schedules = [];
         this.currentIndex = -1;
         this.courseColorMap = new Map();
+        
+        this.feedbackSection = document.getElementById('feedback-section');
+        this.globalFeedback = document.getElementById('global-feedback');
     }
 
     init() {
@@ -21,14 +25,38 @@ export class UIManager {
         this.sortPanel = new SortPanel(config.sorters, config.days, () => this._handleUpdate());
         this.timetableGrid = new TimetableGrid(config, (index) => this._handleTimetableSelect(index));
         this.detailsPanel = new DetailsPanel();
+        this.actionHandler = new ActionHandler();
         
         this.modal.init();
         this.coursePanel.init((courses) => this.modal.show(courses));
         this.sortPanel.init();
         this.timetableGrid.init();
 
-        this._attachGlobalListeners();
+        this.actionHandler.init({
+            onImport: (courses) => this._onImport(courses),
+            getExportData: () => {
+                return this.currentIndex !== -1 ? this.coursePanel.getUserCourses() : null;
+            },
+            getDownloadData: () => {
+                if (this.currentIndex === -1) return null;
+                return {
+                    card: document.querySelector(`.timetable-card[data-index="${this.currentIndex}"]`),
+                    index: this.currentIndex
+                };
+            }
+        });
+
         this.timetableGrid.setInitialFeedback('Please add a course to begin.');
+    }
+
+    _updateGlobalFeedback(message) {
+        if (message && message.trim().length > 0) {
+            this.globalFeedback.textContent = message;
+            this.feedbackSection.classList.add('visible');
+        } else {
+            this.globalFeedback.textContent = '';
+            this.feedbackSection.classList.remove('visible');
+        }
     }
 
     _handleUpdate() {
@@ -47,7 +75,7 @@ export class UIManager {
             this.schedules = [];
             this.timetableGrid.setInitialFeedback('Please add a course to begin.');
             this.detailsPanel.clear();
-            this.detailsPanel.updateGlobalFeedback('');
+            this._updateGlobalFeedback('');
             return;
         }
 
@@ -62,7 +90,7 @@ export class UIManager {
         if (generationResult.warnings.length > 0) {
             feedbackMessage += ` ${generationResult.warnings.join(' ')}`;
         }
-        this.detailsPanel.updateGlobalFeedback(feedbackMessage);
+        this._updateGlobalFeedback(feedbackMessage);
     }
 
     _applySorters(schedules) {
@@ -90,96 +118,32 @@ export class UIManager {
             this.detailsPanel.render(selectedSchedule);
         }
     }
-
-    _handleExport() {
-        if (this.currentIndex === -1) return;
-        const highlighted = this.schedules[this.currentIndex];
-        const exportData = {
-            selectedCourses: this.coursePanel.getUserCourses()
-        };
-        const dataStr = JSON.stringify(exportData, null, 2);
-        const blob = new Blob([dataStr], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'ischeduler_export.json';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-    }
     
-    _handleImport(event) {
-        const file = event.target.files[0];
-        if (!file) return;
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                const data = JSON.parse(e.target.result);
-                if (!data.selectedCourses || !Array.isArray(data.selectedCourses)) {
-                    throw new Error("Invalid file format: 'selectedCourses' array not found.");
-                }
-
-                const convertedCourses = data.selectedCourses.map(item => {
-                    if (typeof item.selectedSectionId !== 'undefined') {
-                        return {
-                            courseCode: item.courseCode,
-                            filterType: item.selectedSectionId === 'any' ? 'any' : 'section',
-                            filterValue: item.selectedSectionId === 'any' ? null : item.selectedSectionId
-                        };
-                    }
-                    return item;
-                });
-
-                const isValidContent = convertedCourses.every(item =>
-                    typeof item === 'object' &&
-                    item !== null &&
-                    typeof item.courseCode === 'string' &&
-                    typeof item.filterType === 'string' &&
-                    (item.filterValue === null || typeof item.filterValue === 'string')
-                );
-
-                if (!isValidContent) {
-                    throw new Error("Invalid file format: Course data is malformed.");
-                }
-
-                this.coursePanel.setUserCourses(convertedCourses);
-                this._handleUpdate();
-            } catch (error) {
-                alert(`Error: Could not import file. ${error.message}`);
+    _onImport(importedCourses) {
+        const convertedCourses = importedCourses.map(item => {
+            if (typeof item.selectedSectionId !== 'undefined') {
+                return {
+                    courseCode: item.courseCode,
+                    filterType: item.selectedSectionId === 'any' ? 'any' : 'section',
+                    filterValue: item.selectedSectionId === 'any' ? null : item.selectedSectionId
+                };
             }
-        };
-        reader.readAsText(file);
-        event.target.value = '';
-    }
-    
-    _handleDownload() {
-        if (this.currentIndex === -1) return;
-        const card = document.querySelector(`.timetable-card[data-index="${this.currentIndex}"]`);
-        if (card && window.html2canvas) {
-            html2canvas(card, { 
-                useCORS: true, 
-                backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--card-background').trim()
-            }).then(canvas => {
-                const a = document.createElement('a');
-                a.href = canvas.toDataURL('image/png');
-                a.download = `schedule_option_${this.currentIndex + 1}.png`;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            });
+            return item;
+        });
+
+        const isValidContent = convertedCourses.every(item =>
+            typeof item === 'object' &&
+            item !== null &&
+            typeof item.courseCode === 'string' &&
+            typeof item.filterType === 'string' &&
+            (item.filterValue === null || typeof item.filterValue === 'string')
+        );
+
+        if (!isValidContent) {
+            throw new Error("Invalid file format: Course data is malformed.");
         }
-    }
 
-    _attachGlobalListeners() {
-        const importBtn = document.getElementById('import-btn');
-        const importInput = document.getElementById('import-input');
-        const exportBtn = document.getElementById('export-btn');
-        const downloadBtn = document.getElementById('download-btn');
-
-        importBtn.addEventListener('click', () => importInput.click());
-        importInput.addEventListener('change', (e) => this._handleImport(e));
-        exportBtn.addEventListener('click', () => this._handleExport());
-        downloadBtn.addEventListener('click', () => this._handleDownload());
+        this.coursePanel.setUserCourses(convertedCourses);
+        this._handleUpdate();
     }
 }

@@ -1,7 +1,6 @@
 export class DetailsPanel {
     constructor() {
         this.detailsContainer = document.getElementById('details-panel');
-        this.globalFeedback = document.getElementById('global-feedback');
         this.downloadBtn = document.getElementById('download-btn');
         this.exportBtn = document.getElementById('export-btn');
     }
@@ -29,19 +28,15 @@ export class DetailsPanel {
             </div>
         `;
         this.detailsContainer.innerHTML = detailsHtml;
-        this.detailsContainer.style.display = 'block';
+        this.detailsContainer.classList.add('visible');
         this.downloadBtn.disabled = false;
         this.exportBtn.disabled = false;
     }
 
     clear() {
         this.detailsContainer.innerHTML = '';
-        this.detailsContainer.style.display = 'none';
+        this.detailsContainer.classList.remove('visible');
         this.downloadBtn.disabled = true;
         this.exportBtn.disabled = true;
-    }
-
-    updateGlobalFeedback(message) {
-        this.globalFeedback.textContent = message;
     }
 }

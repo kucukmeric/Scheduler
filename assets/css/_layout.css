@@ -25,6 +25,18 @@ body {
   overflow: hidden;
 }
 
+#content-area,
+.panel-list,
+.list-container {
+  scrollbar-width: none;
+}
+
+#content-area::-webkit-scrollbar,
+.panel-list::-webkit-scrollbar,
+.list-container::-webkit-scrollbar {
+  display: none;
+}
+
 #content-area {
   background-color: var(--content-background);
   border-radius: var(--border-radius);
