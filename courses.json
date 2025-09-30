@@ -4,30 +4,36 @@
     "deptName": "Computer Science",
     "courses": [
       {
-        "code": "CS102",
-        "name": "Introduction to Programming",
+        "code": "CS101",
+        "name": "Computational Thinking",
         "sections": [
-          { "num": "1", "instructor": "A. Corvus", "blocks": [10, 11, 28, 29] },
-          { "num": "2", "instructor": "B. Laske", "blocks": [16, 17, 34, 35] },
-          { "num": "3", "instructor": "C. Valerius", "blocks": [2, 3, 20, 21] }
+          { "num": "1", "instructor": "A. Turing", "blocks": [0, 1, 28, 29] },
+          { "num": "2", "instructor": "D. Knuth", "blocks": [16, 17, 44, 45] },
+          { "num": "3", "instructor": "G. Hopper", "blocks": [33, 34, 56, 57] },
+          { "num": "4", "instructor": "A. Turing", "blocks": [19, 20, 47, 48] },
+          { "num": "5", "instructor": "D. Knuth", "blocks": [5, 6, 61, 62] }
         ]
       },
       {
         "code": "CS201",
-        "name": "Data Structures & Algorithms Lab",
+        "name": "Algorithms & Data Structures Lab",
         "sections": [
-          { "num": "1", "instructor": "D. Sterling", "blocks": [0, 1, 30, 31, 8, 9, 10, 11] },
-          { "num": "2", "instructor": "E. Thorne", "blocks": [6, 7, 22, 23, 37, 38, 39, 40] },
-          { "num": "3", "instructor": "A. Corvus", "blocks": [2, 3, 25, 26, 44, 45, 46, 47] }
+          { "num": "1", "instructor": "G. Hopper", "blocks": [2, 3, 30, 31, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "J. von Neumann", "blocks": [14, 15, 47, 48, 0, 1, 2, 3] },
+          { "num": "3", "instructor": "A. Lovelace", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "G. Hopper", "blocks": [5, 6, 35, 36, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "J. von Neumann", "blocks": [7, 8, 49, 50, 16, 17, 19, 20] }
         ]
       },
       {
-        "code": "CS353",
-        "name": "Database Systems",
+        "code": "CS301",
+        "name": "Operating Systems",
         "sections": [
-          { "num": "1", "instructor": "D. Sterling", "blocks": [26, 27, 48, 49] },
-          { "num": "2", "instructor": "C. Valerius", "blocks": [6, 7, 36, 37] },
-          { "num": "3", "instructor": "E. Thorne", "blocks": [12, 13, 40, 41] }
+          { "num": "1", "instructor": "A. Lovelace", "blocks": [5, 6, 33, 34] },
+          { "num": "2", "instructor": "A. Turing", "blocks": [21, 22, 49, 50] },
+          { "num": "3", "instructor": "D. Knuth", "blocks": [0, 1, 42, 43] },
+          { "num": "4", "instructor": "A. Lovelace", "blocks": [7, 8, 35, 36] },
+          { "num": "5", "instructor": "A. Turing", "blocks": [14, 15, 61, 62] }
         ]
       }
     ]
@@ -37,30 +43,114 @@
     "deptName": "Electrical Engineering",
     "courses": [
       {
-        "code": "EE201",
-        "name": "Digital Logic Circuits",
+        "code": "EE102",
+        "name": "Introduction to Digital Design",
         "sections": [
-          { "num": "1", "instructor": "F. Maxwell", "blocks": [16, 17, 34, 35] },
-          { "num": "2", "instructor": "G. Hertz", "blocks": [12, 13, 44, 45] },
-          { "num": "3", "instructor": "H. Faraday", "blocks": [0, 1, 30, 31] }
+          { "num": "1", "instructor": "J. Bardeen", "blocks": [14, 15, 42, 43] },
+          { "num": "2", "instructor": "G. Ohm", "blocks": [2, 3, 58, 59] },
+          { "num": "3", "instructor": "A. Volta", "blocks": [30, 31, 19, 20] },
+          { "num": "4", "instructor": "J. Bardeen", "blocks": [0, 1, 30, 31] },
+          { "num": "5", "instructor": "G. Ohm", "blocks": [16, 17, 44, 45] }
         ]
       },
       {
         "code": "EE212",
         "name": "Signals and Systems Lab",
         "sections": [
-          { "num": "1", "instructor": "F. Maxwell", "blocks": [10, 11, 40, 41, 18, 19, 20, 21] },
-          { "num": "2", "instructor": "H. Faraday", "blocks": [2, 3, 22, 23, 36, 37, 38, 39] },
-          { "num": "3", "instructor": "G. Hertz", "blocks": [8, 9, 50, 51, 32, 33, 34, 35] }
+          { "num": "1", "instructor": "C. Shannon", "blocks": [0, 1, 28, 29, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "H. Nyquist", "blocks": [16, 17, 47, 48, 5, 6, 7, 8] },
+          { "num": "3", "instructor": "J. Maxwell", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "C. Shannon", "blocks": [2, 3, 30, 31, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "H. Nyquist", "blocks": [14, 15, 49, 50, 0, 1, 2, 3] }
         ]
       },
       {
-        "code": "EE301",
-        "name": "Analog Electronics",
+        "code": "EE331",
+        "name": "Electromagnetics",
         "sections": [
-          { "num": "1", "instructor": "H. Faraday", "blocks": [0, 1, 48, 49] },
-          { "num": "2", "instructor": "G. Hertz", "blocks": [10, 11, 25, 26] },
-          { "num": "3", "instructor": "F. Maxwell", "blocks": [6, 7, 32, 33] }
+          { "num": "1", "instructor": "A. Volta", "blocks": [7, 8, 35, 36] },
+          { "num": "2", "instructor": "J. Maxwell", "blocks": [14, 15, 42, 43] },
+          { "num": "3", "instructor": "J. Bardeen", "blocks": [2, 3, 58, 59] },
+          { "num": "4", "instructor": "A. Volta", "blocks": [5, 6, 33, 34] },
+          { "num": "5", "instructor": "J. Maxwell", "blocks": [0, 1, 28, 29] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "IE",
+    "deptName": "Industrial Engineering",
+    "courses": [
+      {
+        "code": "IE101",
+        "name": "Introduction to Operations Research",
+        "sections": [
+          { "num": "1", "instructor": "G. Dantzig", "blocks": [0, 1, 28, 29] },
+          { "num": "2", "instructor": "F. Taylor", "blocks": [16, 17, 44, 45] },
+          { "num": "3", "instructor": "H. Gantt", "blocks": [33, 34, 56, 57] },
+          { "num": "4", "instructor": "G. Dantzig", "blocks": [19, 20, 47, 48] },
+          { "num": "5", "instructor": "F. Taylor", "blocks": [5, 6, 61, 62] }
+        ]
+      },
+      {
+        "code": "IE271",
+        "name": "Stochastic Models Lab",
+        "sections": [
+          { "num": "1", "instructor": "A. Erlang", "blocks": [2, 3, 30, 31, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "W. Shewhart", "blocks": [14, 15, 47, 48, 0, 1, 2, 3] },
+          { "num": "3", "instructor": "T. Ohno", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "A. Erlang", "blocks": [5, 6, 35, 36, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "W. Shewhart", "blocks": [7, 8, 49, 50, 16, 17, 19, 20] }
+        ]
+      },
+      {
+        "code": "IE342",
+        "name": "Engineering Economics",
+        "sections": [
+          { "num": "1", "instructor": "H. Gantt", "blocks": [5, 6, 35, 36] },
+          { "num": "2", "instructor": "T. Ohno", "blocks": [21, 22, 49, 50] },
+          { "num": "3", "instructor": "G. Dantzig", "blocks": [7, 8, 42, 43] },
+          { "num": "4", "instructor": "H. Gantt", "blocks": [0, 1, 28, 29] },
+          { "num": "5", "instructor": "T. Ohno", "blocks": [14, 15, 62, 63] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "PHYS",
+    "deptName": "Physics",
+    "courses": [
+      {
+        "code": "PHYS101",
+        "name": "General Physics",
+        "sections": [
+          { "num": "1", "instructor": "A. Einstein", "blocks": [14, 15, 42, 43] },
+          { "num": "2", "instructor": "M. Curie", "blocks": [2, 3, 58, 59] },
+          { "num": "3", "instructor": "I. Newton", "blocks": [30, 31, 19, 20] },
+          { "num": "4", "instructor": "A. Einstein", "blocks": [0, 1, 30, 31] },
+          { "num": "5", "instructor": "M. Curie", "blocks": [16, 17, 44, 45] }
+        ]
+      },
+      {
+        "code": "PHYS201",
+        "name": "Classical Mechanics Lab",
+        "sections": [
+          { "num": "1", "instructor": "N. Bohr", "blocks": [0, 1, 28, 29, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "M. Planck", "blocks": [16, 17, 47, 48, 5, 6, 7, 8] },
+          { "num": "3", "instructor": "G. Galilei", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "N. Bohr", "blocks": [2, 3, 30, 31, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "M. Planck", "blocks": [14, 15, 49, 50, 0, 1, 2, 3] }
+        ]
+      },
+      {
+        "code": "PHYS315",
+        "name": "Quantum Mechanics",
+        "sections": [
+          { "num": "1", "instructor": "I. Newton", "blocks": [7, 8, 35, 36] },
+          { "num": "2", "instructor": "G. Galilei", "blocks": [14, 15, 42, 43] },
+          { "num": "3", "instructor": "A. Einstein", "blocks": [2, 3, 58, 59] },
+          { "num": "4", "instructor": "I. Newton", "blocks": [5, 6, 33, 34] },
+          { "num": "5", "instructor": "G. Galilei", "blocks": [0, 1, 28, 29] }
         ]
       }
     ]
@@ -73,225 +163,72 @@
         "code": "ECON101",
         "name": "Principles of Microeconomics",
         "sections": [
-          { "num": "1", "instructor": "J. Keynes", "blocks": [16, 17, 34, 35] },
-          { "num": "2", "instructor": "A. Smith", "blocks": [12, 13, 44, 45] },
-          { "num": "3", "instructor": "M. Friedman", "blocks": [2, 3, 30, 31] }
+          { "num": "1", "instructor": "A. Smith", "blocks": [0, 1, 28, 29] },
+          { "num": "2", "instructor": "J. Keynes", "blocks": [16, 17, 44, 45] },
+          { "num": "3", "instructor": "M. Friedman", "blocks": [33, 34, 56, 57] },
+          { "num": "4", "instructor": "A. Smith", "blocks": [19, 20, 47, 48] },
+          { "num": "5", "instructor": "J. Keynes", "blocks": [5, 6, 61, 62] }
         ]
       },
       {
         "code": "ECON202",
         "name": "Econometrics Lab",
         "sections": [
-          { "num": "1", "instructor": "A. Smith", "blocks": [8, 9, 25, 26, 37, 38, 39, 40] },
-          { "num": "2", "instructor": "J. Keynes", "blocks": [0, 1, 32, 33, 46, 47, 48, 49] },
-          { "num": "3", "instructor": "M. Friedman", "blocks": [6, 7, 50, 51, 18, 19, 20, 21] }
+          { "num": "1", "instructor": "D. Ricardo", "blocks": [2, 3, 30, 31, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "J. Nash", "blocks": [14, 15, 47, 48, 0, 1, 2, 3] },
+          { "num": "3", "instructor": "F. Hayek", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "D. Ricardo", "blocks": [5, 6, 35, 36, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "J. Nash", "blocks": [7, 8, 49, 50, 16, 17, 19, 20] }
         ]
       },
       {
         "code": "ECON310",
         "name": "Game Theory",
         "sections": [
-          { "num": "1", "instructor": "J. Nash", "blocks": [2, 3, 40, 41] },
-          { "num": "2", "instructor": "A. Smith", "blocks": [20, 21, 50, 51] },
-          { "num": "3", "instructor": "J. Keynes", "blocks": [8, 9, 36, 37] }
+          { "num": "1", "instructor": "M. Friedman", "blocks": [5, 6, 35, 36] },
+          { "num": "2", "instructor": "F. Hayek", "blocks": [21, 22, 49, 50] },
+          { "num": "3", "instructor": "A. Smith", "blocks": [7, 8, 42, 43] },
+          { "num": "4", "instructor": "M. Friedman", "blocks": [0, 1, 28, 29] },
+          { "num": "5", "instructor": "F. Hayek", "blocks": [14, 15, 62, 63] }
         ]
       }
     ]
   },
   {
-    "deptCode": "PSYC",
-    "deptName": "Psychology",
+    "deptCode": "MATH",
+    "deptName": "Mathematics",
     "courses": [
       {
-        "code": "PSYC100",
-        "name": "Introduction to Psychology",
+        "code": "MATH101",
+        "name": "Calculus I",
         "sections": [
-          { "num": "1", "instructor": "S. Freud", "blocks": [1, 2, 30, 31] },
-          { "num": "2", "instructor": "C. Jung", "blocks": [16, 17, 44, 45] },
-          { "num": "3", "instructor": "B. Skinner", "blocks": [6, 7, 34, 35] }
+          { "num": "1", "instructor": "L. Euler", "blocks": [14, 15, 42, 43] },
+          { "num": "2", "instructor": "C. F. Gauss", "blocks": [2, 3, 58, 59] },
+          { "num": "3", "instructor": "B. Riemann", "blocks": [30, 31, 19, 20] },
+          { "num": "4", "instructor": "L. Euler", "blocks": [0, 1, 30, 31] },
+          { "num": "5", "instructor": "C. F. Gauss", "blocks": [16, 17, 44, 45] }
         ]
       },
       {
-        "code": "PSYC230",
-        "name": "Cognitive Psychology Lab",
+        "code": "MATH230",
+        "name": "Linear Algebra & Differential Eq. Lab",
         "sections": [
-          { "num": "1", "instructor": "J. Piaget", "blocks": [2, 3, 22, 23, 37, 38, 39, 40] },
-          { "num": "2", "instructor": "B. Skinner", "blocks": [10, 11, 40, 41, 25, 26, 27, 28] },
-          { "num": "3", "instructor": "C. Jung", "blocks": [0, 1, 20, 21, 44, 45, 46, 47] }
+          { "num": "1", "instructor": "D. Hilbert", "blocks": [0, 1, 28, 29, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "P. de Fermat", "blocks": [16, 17, 47, 48, 5, 6, 7, 8] },
+          { "num": "3", "instructor": "E. Galois", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "D. Hilbert", "blocks": [2, 3, 30, 31, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "P. de Fermat", "blocks": [14, 15, 49, 50, 0, 1, 2, 3] }
         ]
       },
       {
-        "code": "PSYC350",
-        "name": "Social Psychology",
+        "code": "MATH310",
+        "name": "Abstract Algebra",
         "sections": [
-          { "num": "1", "instructor": "S. Asch", "blocks": [8, 9, 36, 37] },
-          { "num": "2", "instructor": "S. Freud", "blocks": [25, 26, 50, 51] },
-          { "num": "3", "instructor": "J. Piaget", "blocks": [0, 1, 40, 41] }
-        ]
-      }
-    ]
-  },
-  {
-    "deptCode": "IE",
-    "deptName": "Industrial Engineering",
-    "courses": [
-      {
-        "code": "IE271",
-        "name": "Operations Research I",
-        "sections": [
-          { "num": "1", "instructor": "G. Dantzig", "blocks": [16, 17, 34, 35] },
-          { "num": "2", "instructor": "F. Taylor", "blocks": [12, 13, 44, 45] },
-          { "num": "3", "instructor": "H. Gantt", "blocks": [2, 3, 30, 31] }
-        ]
-      },
-      {
-        "code": "IE325",
-        "name": "Simulation Lab",
-        "sections": [
-          { "num": "1", "instructor": "T. Ohno", "blocks": [0, 1, 20, 21, 37, 38, 39, 40] },
-          { "num": "2", "instructor": "F. Taylor", "blocks": [8, 9, 25, 26, 27, 28, 29, 30] },
-          { "num": "3", "instructor": "G. Dantzig", "blocks": [6, 7, 36, 37, 18, 19, 20, 21] }
-        ]
-      },
-      {
-        "code": "IE410",
-        "name": "Supply Chain Management",
-        "sections": [
-          { "num": "1", "instructor": "T. Ohno", "blocks": [6, 7, 38, 39] },
-          { "num": "2", "instructor": "H. Gantt", "blocks": [2, 3, 22, 23] },
-          { "num": "3", "instructor": "F. Taylor", "blocks": [20, 21, 50, 51] }
-        ]
-      }
-    ]
-  },
-  {
-    "deptCode": "MAN",
-    "deptName": "Management",
-    "courses": [
-      {
-        "code": "MAN101",
-        "name": "Introduction to Business",
-        "sections": [
-          { "num": "1", "instructor": "P. Drucker", "blocks": [20, 21, 50, 51] },
-          { "num": "2", "instructor": "M. Porter", "blocks": [16, 17, 34, 35] },
-          { "num": "3", "instructor": "T. Peters", "blocks": [8, 9, 38, 39] }
-        ]
-      },
-      {
-        "code": "MAN213",
-        "name": "Marketing Research Lab",
-        "sections": [
-          { "num": "1", "instructor": "P. Kotler", "blocks": [6, 7, 25, 26, 37, 38, 39, 40] },
-          { "num": "2", "instructor": "S. Godin", "blocks": [0, 1, 20, 21, 30, 31, 32, 33] },
-          { "num": "3", "instructor": "D. Ogilvy", "blocks": [10, 11, 40, 41, 45, 46, 47, 48] }
-        ]
-      },
-      {
-        "code": "MAN305",
-        "name": "Organizational Behavior",
-        "sections": [
-          { "num": "1", "instructor": "P. Drucker", "blocks": [2, 3, 22, 23] },
-          { "num": "2", "instructor": "M. Porter", "blocks": [8, 9, 36, 37] },
-          { "num": "3", "instructor": "T. Peters", "blocks": [26, 27, 48, 49] }
-        ]
-      }
-    ]
-  },
-  {
-    "deptCode": "PHYS",
-    "deptName": "Physics",
-    "courses": [
-      {
-        "code": "PHYS101",
-        "name": "General Physics I",
-        "sections": [
-          { "num": "1", "instructor": "I. Newton", "blocks": [20, 21, 50, 51] },
-          { "num": "2", "instructor": "A. Einstein", "blocks": [16, 17, 34, 35] },
-          { "num": "3", "instructor": "G. Galilei", "blocks": [2, 3, 30, 31] }
-        ]
-      },
-      {
-        "code": "PHYS201",
-        "name": "Classical Mechanics Lab",
-        "sections": [
-          { "num": "1", "instructor": "M. Planck", "blocks": [0, 1, 22, 23, 37, 38, 39, 40] },
-          { "num": "2", "instructor": "N. Bohr", "blocks": [6, 7, 25, 26, 27, 28, 29, 30] },
-          { "num": "3", "instructor": "A. Einstein", "blocks": [8, 9, 38, 39, 18, 19, 20, 21] }
-        ]
-      },
-      {
-        "code": "PHYS315",
-        "name": "Electromagnetism",
-        "sections": [
-          { "num": "1", "instructor": "I. Newton", "blocks": [10, 11, 40, 41] },
-          { "num": "2", "instructor": "M. Planck", "blocks": [8, 9, 26, 27] },
-          { "num": "3", "instructor": "N. Bohr", "blocks": [20, 21, 52, 53] }
-        ]
-      }
-    ]
-  },
-  {
-    "deptCode": "POLS",
-    "deptName": "Political Science",
-    "courses": [
-      {
-        "code": "POLS101",
-        "name": "Introduction to Political Science",
-        "sections": [
-          { "num": "1", "instructor": "N. Machiavelli", "blocks": [1, 2, 30, 31] },
-          { "num": "2", "instructor": "J. Locke", "blocks": [20, 21, 50, 51] },
-          { "num": "3", "instructor": "H. Arendt", "blocks": [16, 17, 34, 35] }
-        ]
-      },
-      {
-        "code": "POLS245",
-        "name": "International Relations Theory Lab",
-        "sections": [
-          { "num": "1", "instructor": "H. Kissinger", "blocks": [2, 3, 22, 23, 37, 38, 39, 40] },
-          { "num": "2", "instructor": "T. Schelling", "blocks": [10, 11, 40, 41, 30, 31, 32, 33] },
-          { "num": "3", "instructor": "H. Morgenthau", "blocks": [0, 1, 25, 26, 44, 45, 46, 47] }
-        ]
-      },
-      {
-        "code": "POLS303",
-        "name": "Comparative Politics",
-        "sections": [
-          { "num": "1", "instructor": "J. Locke", "blocks": [6, 7, 38, 39] },
-          { "num": "2", "instructor": "H. Arendt", "blocks": [26, 27, 48, 49] },
-          { "num": "3", "instructor": "N. Machiavelli", "blocks": [0, 1, 26, 27] }
-        ]
-      }
-    ]
-  },
-  {
-    "deptCode": "GRA",
-    "deptName": "Graphic Design",
-    "courses": [
-      {
-        "code": "GRA101",
-        "name": "Intro to Visual Design",
-        "sections": [
-          { "num": "1", "instructor": "P. Rand", "blocks": [12, 13, 44, 45] },
-          { "num": "2", "instructor": "S. Bass", "blocks": [16, 17, 34, 35] },
-          { "num": "3", "instructor": "P. Scher", "blocks": [20, 21, 50, 51] }
-        ]
-      },
-      {
-        "code": "GRA201",
-        "name": "Typography Studio",
-        "sections": [
-          { "num": "1", "instructor": "M. Vignelli", "blocks": [6, 7, 25, 26, 37, 38, 39, 40] },
-          { "num": "2", "instructor": "P. Scher", "blocks": [10, 11, 32, 33, 18, 19, 20, 21] },
-          { "num": "3", "instructor": "S. Bass", "blocks": [0, 1, 22, 23, 44, 45, 46, 47] }
-        ]
-      },
-      {
-        "code": "GRA331",
-        "name": "Web Design",
-        "sections": [
-          { "num": "1", "instructor": "E. Meyer", "blocks": [0, 1, 38, 39] },
-          { "num": "2", "instructor": "J. Zeldman", "blocks": [6, 7, 22, 23] },
-          { "num": "3", "instructor": "J. Santa Maria", "blocks": [10, 11, 40, 41] }
+          { "num": "1", "instructor": "B. Riemann", "blocks": [7, 8, 35, 36] },
+          { "num": "2", "instructor": "E. Galois", "blocks": [14, 15, 42, 43] },
+          { "num": "3", "instructor": "L. Euler", "blocks": [2, 3, 58, 59] },
+          { "num": "4", "instructor": "B. Riemann", "blocks": [5, 6, 33, 34] },
+          { "num": "5", "instructor": "E. Galois", "blocks": [0, 1, 28, 29] }
         ]
       }
     ]
@@ -304,27 +241,150 @@
         "code": "MBG110",
         "name": "Fundamentals of Biology",
         "sections": [
-          { "num": "1", "instructor": "J. Watson", "blocks": [20, 21, 50, 51] },
-          { "num": "2", "instructor": "F. Crick", "blocks": [12, 13, 44, 45] },
-          { "num": "3", "instructor": "R. Franklin", "blocks": [0, 1, 30, 31] }
+          { "num": "1", "instructor": "J. Watson", "blocks": [0, 1, 28, 29] },
+          { "num": "2", "instructor": "F. Crick", "blocks": [16, 17, 44, 45] },
+          { "num": "3", "instructor": "R. Franklin", "blocks": [33, 34, 56, 57] },
+          { "num": "4", "instructor": "J. Watson", "blocks": [19, 20, 47, 48] },
+          { "num": "5", "instructor": "F. Crick", "blocks": [5, 6, 61, 62] }
         ]
       },
       {
         "code": "MBG210",
         "name": "Genetics Lab",
         "sections": [
-          { "num": "1", "instructor": "G. Mendel", "blocks": [2, 3, 22, 23, 37, 38, 39, 40] },
-          { "num": "2", "instructor": "T. Morgan", "blocks": [10, 11, 40, 41, 26, 27, 28, 29] },
-          { "num": "3", "instructor": "B. McClintock", "blocks": [0, 1, 25, 26, 44, 45, 46, 47] }
+          { "num": "1", "instructor": "G. Mendel", "blocks": [2, 3, 30, 31, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "T. Morgan", "blocks": [14, 15, 47, 48, 0, 1, 2, 3] },
+          { "num": "3", "instructor": "B. McClintock", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "G. Mendel", "blocks": [5, 6, 35, 36, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "T. Morgan", "blocks": [7, 8, 49, 50, 16, 17, 19, 20] }
         ]
       },
       {
         "code": "MBG301",
         "name": "Cell Biology",
         "sections": [
-          { "num": "1", "instructor": "R. Franklin", "blocks": [8, 9, 38, 39] },
-          { "num": "2", "instructor": "G. Mendel", "blocks": [6, 7, 26, 27] },
-          { "num": "3", "instructor": "T. Morgan", "blocks": [25, 26, 48, 49] }
+          { "num": "1", "instructor": "R. Franklin", "blocks": [5, 6, 35, 36] },
+          { "num": "2", "instructor": "B. McClintock", "blocks": [21, 22, 49, 50] },
+          { "num": "3", "instructor": "J. Watson", "blocks": [7, 8, 42, 43] },
+          { "num": "4", "instructor": "R. Franklin", "blocks": [0, 1, 28, 29] },
+          { "num": "5", "instructor": "B. McClintock", "blocks": [14, 15, 62, 63] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "PSYC",
+    "deptName": "Psychology",
+    "courses": [
+      {
+        "code": "PSYC100",
+        "name": "Introduction to Psychology",
+        "sections": [
+          { "num": "1", "instructor": "S. Freud", "blocks": [14, 15, 42, 43] },
+          { "num": "2", "instructor": "C. Jung", "blocks": [2, 3, 58, 59] },
+          { "num": "3", "instructor": "B. Skinner", "blocks": [30, 31, 19, 20] },
+          { "num": "4", "instructor": "S. Freud", "blocks": [0, 1, 30, 31] },
+          { "num": "5", "instructor": "C. Jung", "blocks": [16, 17, 44, 45] }
+        ]
+      },
+      {
+        "code": "PSYC230",
+        "name": "Cognitive Psychology Lab",
+        "sections": [
+          { "num": "1", "instructor": "J. Piaget", "blocks": [0, 1, 28, 29, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "I. Pavlov", "blocks": [16, 17, 47, 48, 5, 6, 7, 8] },
+          { "num": "3", "instructor": "S. Asch", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "J. Piaget", "blocks": [2, 3, 30, 31, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "I. Pavlov", "blocks": [14, 15, 49, 50, 0, 1, 2, 3] }
+        ]
+      },
+      {
+        "code": "PSYC350",
+        "name": "Social Psychology",
+        "sections": [
+          { "num": "1", "instructor": "B. Skinner", "blocks": [7, 8, 35, 36] },
+          { "num": "2", "instructor": "S. Asch", "blocks": [14, 15, 42, 43] },
+          { "num": "3", "instructor": "S. Freud", "blocks": [2, 3, 58, 59] },
+          { "num": "4", "instructor": "B. Skinner", "blocks": [5, 6, 33, 34] },
+          { "num": "5", "instructor": "S. Asch", "blocks": [0, 1, 28, 29] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "MAN",
+    "deptName": "Management",
+    "courses": [
+      {
+        "code": "MAN101",
+        "name": "Introduction to Business",
+        "sections": [
+          { "num": "1", "instructor": "P. Drucker", "blocks": [0, 1, 28, 29] },
+          { "num": "2", "instructor": "M. Porter", "blocks": [16, 17, 44, 45] },
+          { "num": "3", "instructor": "T. Peters", "blocks": [33, 34, 56, 57] },
+          { "num": "4", "instructor": "P. Drucker", "blocks": [19, 20, 47, 48] },
+          { "num": "5", "instructor": "M. Porter", "blocks": [5, 6, 61, 62] }
+        ]
+      },
+      {
+        "code": "MAN213",
+        "name": "Marketing Research Lab",
+        "sections": [
+          { "num": "1", "instructor": "P. Kotler", "blocks": [2, 3, 30, 31, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "S. Godin", "blocks": [14, 15, 47, 48, 0, 1, 2, 3] },
+          { "num": "3", "instructor": "D. Ogilvy", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "P. Kotler", "blocks": [5, 6, 35, 36, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "S. Godin", "blocks": [7, 8, 49, 50, 16, 17, 19, 20] }
+        ]
+      },
+      {
+        "code": "MAN305",
+        "name": "Organizational Behavior",
+        "sections": [
+          { "num": "1", "instructor": "T. Peters", "blocks": [5, 6, 35, 36] },
+          { "num": "2", "instructor": "D. Ogilvy", "blocks": [21, 22, 49, 50] },
+          { "num": "3", "instructor": "P. Drucker", "blocks": [7, 8, 42, 43] },
+          { "num": "4", "instructor": "T. Peters", "blocks": [0, 1, 28, 29] },
+          { "num": "5", "instructor": "D. Ogilvy", "blocks": [14, 15, 62, 63] }
+        ]
+      }
+    ]
+  },
+  {
+    "deptCode": "ARCH",
+    "deptName": "Architecture",
+    "courses": [
+      {
+        "code": "ARCH101",
+        "name": "Introduction to Design",
+        "sections": [
+          { "num": "1", "instructor": "F. L. Wright", "blocks": [14, 15, 42, 43] },
+          { "num": "2", "instructor": "Z. Hadid", "blocks": [2, 3, 58, 59] },
+          { "num": "3", "instructor": "Le Corbusier", "blocks": [30, 31, 19, 20] },
+          { "num": "4", "instructor": "F. L. Wright", "blocks": [0, 1, 30, 31] },
+          { "num": "5", "instructor": "Z. Hadid", "blocks": [16, 17, 44, 45] }
+        ]
+      },
+      {
+        "code": "ARCH201",
+        "name": "Architectural Design Studio Lab",
+        "sections": [
+          { "num": "1", "instructor": "L. M. van der Rohe", "blocks": [0, 1, 28, 29, 42, 43, 44, 45] },
+          { "num": "2", "instructor": "F. Gehry", "blocks": [16, 17, 47, 48, 5, 6, 7, 8] },
+          { "num": "3", "instructor": "N. Foster", "blocks": [33, 34, 61, 62, 19, 20, 21, 22] },
+          { "num": "4", "instructor": "L. M. van der Rohe", "blocks": [2, 3, 30, 31, 56, 57, 58, 59] },
+          { "num": "5", "instructor": "F. Gehry", "blocks": [14, 15, 49, 50, 0, 1, 2, 3] }
+        ]
+      },
+      {
+        "code": "ARCH351",
+        "name": "History of Architecture",
+        "sections": [
+          { "num": "1", "instructor": "Le Corbusier", "blocks": [7, 8, 35, 36] },
+          { "num": "2", "instructor": "N. Foster", "blocks": [14, 15, 42, 43] },
+          { "num": "3", "instructor": "F. L. Wright", "blocks": [2, 3, 58, 59] },
+          { "num": "4", "instructor": "Le Corbusier", "blocks": [5, 6, 33, 34] },
+          { "num": "5", "instructor": "N. Foster", "blocks": [0, 1, 28, 29] }
         ]
       }
     ]

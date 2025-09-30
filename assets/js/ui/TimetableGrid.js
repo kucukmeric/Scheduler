@@ -1,5 +1,3 @@
-import { getLogicIndex } from "../core/timeMapper.js";
-
 export class TimetableGrid {
     constructor(config, onSelectCallback) {
         this.config = config;
@@ -13,7 +11,7 @@ export class TimetableGrid {
         this._attachListeners();
     }
 
-    render(schedules) {
+    render(schedules, courseColorMap) {
         this.gridContainer.innerHTML = '';
         this._clearSelection();
         
@@ -22,9 +20,10 @@ export class TimetableGrid {
             this.feedbackContainer.style.display = 'block';
             this.gridContainer.style.display = 'none';
         } else {
-            this.feedbackContainer.style.display = 'grid';
+            this.feedbackContainer.style.display = 'none';
+            this.gridContainer.style.display = 'grid';
             schedules.forEach((schedule, index) => {
-                const card = this._createCardElement(schedule, index);
+                const card = this._createCardElement(schedule, index, courseColorMap);
                 this.gridContainer.appendChild(card);
             });
         }
@@ -36,18 +35,10 @@ export class TimetableGrid {
         this.gridContainer.style.display = 'none';
     }
 
-    _createCardElement(schedule, index) {
+    _createCardElement(schedule, index, courseColorMap) {
         const card = document.createElement('div');
         card.className = 'timetable-card';
         card.dataset.index = index;
-
-        const courseToColor = new Map();
-        schedule.selection.forEach((section, i) => {
-            const courseCode = section.id.split('-')[0];
-            if (!courseToColor.has(courseCode)) {
-                courseToColor.set(courseCode, this.config.colors[i % this.config.colors.length]);
-            }
-        });
 
         let tableHtml = `
             <div class="card-header">Option ${index + 1}</div>
@@ -61,21 +52,19 @@ export class TimetableGrid {
             tableHtml += `<tr><th>${hourMark}</th>`;
             for (let d = 0; d < this.config.days.length; d++) {
                 let cellContent = '';
+                const blockIndex = d * this.config.totalHoursPerDay + h;
+
                 if (h === this.config.lunchBlockIndex) {
                     cellContent = `<div class="card-lunch-cell"></div>`;
                 } else {
-                    const renderIndex = d * this.config.totalHoursPerDay + h;
-                    const logicIndex = getLogicIndex(renderIndex);
-                    
-                    const MASK_CHUNK_SIZE = 32;
-                    const maskIndex = Math.floor(logicIndex / MASK_CHUNK_SIZE);
-                    const bitPosition = logicIndex % MASK_CHUNK_SIZE;
+                    const maskIndex = Math.floor(blockIndex / this.config.maskChunkSize);
+                    const bitPosition = blockIndex % this.config.maskChunkSize;
                     const isOccupied = (schedule.mask[maskIndex] & (1 << bitPosition)) !== 0;
 
                     if (isOccupied) {
-                        const section = schedule.selection.find(s => s.blocks.includes(renderIndex));
+                        const section = schedule.selection.find(s => s.blocks.includes(blockIndex));
                         const courseCode = section ? section.id.split('-')[0] : '';
-                        const color = courseToColor.get(courseCode);
+                        const color = courseColorMap.get(courseCode) || '#cccccc';
                         cellContent = `<div class="card-occupied-cell" style="--course-color: ${color}"></div>`;
                     }
                 }

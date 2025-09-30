@@ -19,7 +19,7 @@ export const config = {
         { id: 'avoid-day', displayName: 'Avoid Day', scoreKey: 'dayScore', dayIndex: 0, allowMultiple: true }
     ],
     lunchBlockIndex: 4,
+    maskChunkSize: 32,
 };
 
 config.totalHoursPerDay = config.hours.length;
-config.schedulableHoursPerDay = config.hours.length - 1;

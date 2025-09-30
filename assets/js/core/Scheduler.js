@@ -1,7 +1,4 @@
 import { config } from './config.js';
-import { getLogicIndex } from './timeMapper.js';
-
-const MASK_CHUNK_SIZE = 32;
 
 export class Section {
     constructor(id, instructor, blocks) {
@@ -9,16 +6,13 @@ export class Section {
         this.instructor = instructor;
         this.blocks = blocks;
         
-        const totalSchedulableBlocks = config.days.length * config.schedulableHoursPerDay;
-        const numChunks = Math.ceil(totalSchedulableBlocks / MASK_CHUNK_SIZE);
+        const totalBlocks = config.days.length * config.totalHoursPerDay;
+        const numChunks = Math.ceil(totalBlocks / config.maskChunkSize);
         this.mask = new Array(numChunks).fill(0);
 
-        for (const renderBlock of blocks) {
-            const logicIndex = getLogicIndex(renderBlock);
-            if (logicIndex === -1) continue;
-
-            const maskIndex = Math.floor(logicIndex / MASK_CHUNK_SIZE);
-            const bitPosition = logicIndex % MASK_CHUNK_SIZE;
+        for (const blockIndex of blocks) {
+            const maskIndex = Math.floor(blockIndex / config.maskChunkSize);
+            const bitPosition = blockIndex % config.maskChunkSize;
             this.mask[maskIndex] |= (1 << bitPosition);
         }
     }
@@ -33,7 +27,7 @@ export class Section {
     }
 }
 
-function generate(userCourses, allCourses, index, currentMask, selection, results) {
+function generate(userCourses, allCourses, index, currentMask, selection, results, warnings) {
     if (index === userCourses.length) {
         if (selection.length > 0) {
             const schedule = { selection: [...selection], mask: currentMask };
@@ -46,35 +40,57 @@ function generate(userCourses, allCourses, index, currentMask, selection, result
     const userCourse = userCourses[index];
     const courseData = allCourses.find(c => c.code === userCourse.courseCode);
     if (!courseData) {
-        generate(userCourses, allCourses, index + 1, currentMask, [...selection], results);
+        generate(userCourses, allCourses, index + 1, currentMask, [...selection], results, warnings);
         return;
     }
 
-    const sectionsToTry = userCourse.selectedSectionId === 'any'
-        ? courseData.sections
-        : courseData.sections.filter(s => s.id === userCourse.selectedSectionId);
-
-    if (sectionsToTry.length === 0 && userCourse.selectedSectionId !== 'any') {
-         // This handles the case where a locked section might not exist.
+    let sectionsToTry = [];
+    switch (userCourse.filterType) {
+        case 'section':
+            sectionsToTry = courseData.sections.filter(
+                s => s.id === userCourse.filterValue
+            );
+            break;
+        case 'teacher':
+            sectionsToTry = courseData.sections.filter(
+                s => s.instructor === userCourse.filterValue
+            );
+            break;
+        default:
+            sectionsToTry = courseData.sections;
+            break;
+    }
+    
+    if (sectionsToTry.length === 0 && userCourse.filterType !== 'any') {
+        warnings.push(`No sections found for ${userCourse.courseCode} with the selected filter and has been ignored.`);
+        generate(userCourses, allCourses, index + 1, currentMask, [...selection], results, warnings);
     } else if (sectionsToTry.length === 0) {
-        // No sections available for this course, but it wasn't locked.
-        generate(userCourses, allCourses, index + 1, currentMask, [...selection], results);
+        generate(userCourses, allCourses, index + 1, currentMask, [...selection], results, warnings);
     }
 
     for (const s of sectionsToTry) {
         if (s.conflicts(currentMask)) continue;
         const newMask = currentMask.map((chunk, i) => chunk | s.mask[i]);
-        generate(userCourses, allCourses, index + 1, newMask, [...selection, s], results);
+        generate(userCourses, allCourses, index + 1, newMask, [...selection, s], results, warnings);
     }
 }
 
 export function generateSchedules(userCourses, allCourses) {
     const results = [];
-    const totalSchedulableBlocks = config.days.length * config.schedulableHoursPerDay;
-    const numChunks = Math.ceil(totalSchedulableBlocks / MASK_CHUNK_SIZE);
-    const initialMask = new Array(numChunks).fill(0);
-    generate(userCourses, allCourses, 0, initialMask, [], results);
-    return results;
+    const warnings = [];
+    const totalBlocks = config.days.length * config.totalHoursPerDay;
+    const numChunks = Math.ceil(totalBlocks / config.maskChunkSize);
+    
+    const lunchMask = new Array(numChunks).fill(0);
+    for (let d = 0; d < config.days.length; d++) {
+        const lunchBlockIndex = d * config.totalHoursPerDay + config.lunchBlockIndex;
+        const maskIndex = Math.floor(lunchBlockIndex / config.maskChunkSize);
+        const bitPosition = lunchBlockIndex % config.maskChunkSize;
+        lunchMask[maskIndex] |= (1 << bitPosition);
+    }
+    
+    generate(userCourses, allCourses, 0, lunchMask, [], results, warnings);
+    return { schedules: results, warnings: warnings };
 }
 
 export function calculateScores(schedule) {
@@ -88,13 +104,13 @@ export function calculateScores(schedule) {
         let lastClass = -1;
         let dailyBlockCount = 0;
 
-        for (let h = 0; h < config.schedulableHoursPerDay; h++) {
-            const logicIndex = d * config.schedulableHoursPerDay + h;
-            const maskIndex = Math.floor(logicIndex / MASK_CHUNK_SIZE);
-            const bitPosition = logicIndex % MASK_CHUNK_SIZE;
+        for (let h = 0; h < config.totalHoursPerDay; h++) {
+            const blockIndex = d * config.totalHoursPerDay + h;
+            const maskIndex = Math.floor(blockIndex / config.maskChunkSize);
+            const bitPosition = blockIndex % config.maskChunkSize;
             const isOccupied = (schedule.mask[maskIndex] & (1 << bitPosition)) !== 0;
 
-            if (isOccupied) {
+            if (isOccupied && h !== config.lunchBlockIndex) {
                 if (firstClass === -1) firstClass = h;
                 lastClass = h;
                 dailyBlockCount++;
@@ -105,7 +121,10 @@ export function calculateScores(schedule) {
         schedule.dayScore[d] = dailyBlockCount;
 
         if (dailyBlockCount > 0) {
-            const dayDuration = lastClass - firstClass + 1;
+            let dayDuration = lastClass - firstClass + 1;
+            if (firstClass < config.lunchBlockIndex && lastClass > config.lunchBlockIndex) {
+                dayDuration--;
+            }
             schedule.gapScore += (dayDuration - dailyBlockCount);
             if (dailyBlockCount <= 2) schedule.shortDayScore += (3 - dailyBlockCount);
         }

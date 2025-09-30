@@ -12,6 +12,7 @@ export class UIManager {
         this.departments = courseData.departments;
         this.schedules = [];
         this.currentIndex = -1;
+        this.courseColorMap = new Map();
     }
 
     init() {
@@ -33,6 +34,15 @@ export class UIManager {
     _handleUpdate() {
         const userCourses = this.coursePanel.getUserCourses();
 
+        this.courseColorMap.clear();
+        const sortedCourses = [...userCourses].sort((a, b) => a.courseCode.localeCompare(b.courseCode));
+        sortedCourses.forEach((course, index) => {
+            const color = config.colors[index % config.colors.length];
+            this.courseColorMap.set(course.courseCode, color);
+        });
+        this.coursePanel.setUserCourses(sortedCourses);
+        this.coursePanel.render(this.courseColorMap);
+
         if (userCourses.length === 0) {
             this.schedules = [];
             this.timetableGrid.setInitialFeedback('Please add a course to begin.');
@@ -41,13 +51,18 @@ export class UIManager {
             return;
         }
 
-        const generated = generateSchedules(userCourses, this.allCourses);
-        this.schedules = this._applySorters(generated);
+        const generationResult = generateSchedules(userCourses, this.allCourses);
+        this.schedules = this._applySorters(generationResult.schedules);
         this.currentIndex = -1;
         
-        this.timetableGrid.render(this.schedules);
+        this.timetableGrid.render(this.schedules, this.courseColorMap);
         this.detailsPanel.clear();
-        this.detailsPanel.updateGlobalFeedback(`Generated ${this.schedules.length} possible schedules.`);
+        
+        let feedbackMessage = `Generated ${this.schedules.length} possible schedules.`;
+        if (generationResult.warnings.length > 0) {
+            feedbackMessage += ` ${generationResult.warnings.join(' ')}`;
+        }
+        this.detailsPanel.updateGlobalFeedback(feedbackMessage);
     }
 
     _applySorters(schedules) {
@@ -102,9 +117,33 @@ export class UIManager {
             try {
                 const data = JSON.parse(e.target.result);
                 if (!data.selectedCourses || !Array.isArray(data.selectedCourses)) {
-                    throw new Error("Invalid file format.");
+                    throw new Error("Invalid file format: 'selectedCourses' array not found.");
                 }
-                this.coursePanel.setUserCourses(data.selectedCourses);
+
+                const convertedCourses = data.selectedCourses.map(item => {
+                    if (typeof item.selectedSectionId !== 'undefined') {
+                        return {
+                            courseCode: item.courseCode,
+                            filterType: item.selectedSectionId === 'any' ? 'any' : 'section',
+                            filterValue: item.selectedSectionId === 'any' ? null : item.selectedSectionId
+                        };
+                    }
+                    return item;
+                });
+
+                const isValidContent = convertedCourses.every(item =>
+                    typeof item === 'object' &&
+                    item !== null &&
+                    typeof item.courseCode === 'string' &&
+                    typeof item.filterType === 'string' &&
+                    (item.filterValue === null || typeof item.filterValue === 'string')
+                );
+
+                if (!isValidContent) {
+                    throw new Error("Invalid file format: Course data is malformed.");
+                }
+
+                this.coursePanel.setUserCourses(convertedCourses);
                 this._handleUpdate();
             } catch (error) {
                 alert(`Error: Could not import file. ${error.message}`);
