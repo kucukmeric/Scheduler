@@ -1,0 +1,35 @@
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.app-container {
+  display: grid;
+  grid-template-columns: 340px 1fr 340px;
+  height: 100vh;
+  gap: var(--standard-padding);
+  padding: var(--standard-padding);
+  box-sizing: border-box;
+}
+
+.panel {
+  background-color: var(--panel-background);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#content-area {
+  background-color: var(--content-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  overflow-y: auto;
+  padding: var(--standard-padding);
+  position: relative;
+}

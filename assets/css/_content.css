@@ -1,0 +1,82 @@
+#content-feedback {
+    display: none;
+    color: var(--inverted-text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 40px;
+}
+
+#timetable-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.timetable-card {
+    background-color: var(--card-background);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 10px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.timetable-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    border-color: #d4d4d8;
+}
+
+.timetable-card.is-active {
+    border-color: var(--active-border-color);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 5px 20px rgba(217, 119, 6, 0.3);
+}
+
+.card-header {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.timetable-card table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.timetable-card th, .timetable-card td {
+    border: 1px solid #f0f0f0;
+    text-align: center;
+    padding: 0;
+    height: 12px;
+    line-height: 12px;
+}
+
+.timetable-card thead th {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--light-text-color);
+}
+
+.timetable-card tbody th {
+    font-size: 9px;
+    color: var(--light-text-color);
+    font-weight: 400;
+}
+
+.card-occupied-cell {
+    width: 100%;
+    height: 100%;
+    background-color: var(--course-color);
+}
+
+.card-lunch-cell {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f5;
+}

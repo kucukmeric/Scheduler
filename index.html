@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilkent iScheduler</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <aside id="left-panel" class="panel">
+        <div class="panel-section" id="course-panel">
+            <header class="panel-header">
+                <h3>Courses</h3>
+                <button id="add-course-btn" class="panel-header-btn" aria-label="Add Course"><i class="fas fa-plus"></i></button>
+            </header>
+            <div id="course-list-container" class="panel-list">
+            </div>
+        </div>
+        <div class="panel-section" id="sort-panel">
+            <header class="panel-header">
+                <h3>Sorting Rules</h3>
+                <button id="add-rule-btn" class="panel-header-btn" aria-label="Add Sorting Rule"><i class="fas fa-plus"></i></button>
+            </header>
+            <div id="sort-list-container" class="panel-list">
+            </div>
+        </div>
+    </aside>
+
+    <main id="content-area">
+        <div id="timetable-grid">
+        </div>
+        <div id="content-feedback" class="feedback-placeholder">
+        </div>
+    </main>
+
+    <aside id="right-panel" class="panel">
+        <div class="panel-section">
+            <div class="brand-title">
+                <h1>BILKENT</h1>
+                <h2>iSCHEDULER</h2>
+            </div>
+        </div>
+        <div id="details-panel" class="panel-section">
+        </div>
+        <div id="actions-panel" class="panel-section">
+             <div id="global-feedback"></div>
+             <div class="action-buttons">
+                <button id="download-btn" class="action-btn" disabled><i class="fas fa-download"></i> Download</button>
+                <button id="export-btn" class="action-btn" disabled><i class="fas fa-file-export"></i> Export</button>
+                <button id="import-btn" class="action-btn"><i class="fas fa-file-import"></i> Import</button>
+                <input type="file" id="import-input" accept=".json" hidden>
+             </div>
+        </div>
+    </aside>
+
+</div>
+
+<div id="add-course-modal" class="modal-overlay">
+</div>
+
+<script src="assets/js/main.js" type="module"></script>
+</body>
+</html>
