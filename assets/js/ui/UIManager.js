@@ -23,7 +23,7 @@ export class UIManager {
         this.modal = new Modal(this.departments, (courseCode) => this.coursePanel.addCourse(courseCode));
         this.coursePanel = new CoursePanel(this.allCourses, () => this._handleUpdate());
         this.sortPanel = new SortPanel(config.sorters, config.days, () => this._handleUpdate());
-        this.timetableGrid = new TimetableGrid(config, (index) => this._handleTimetableSelect(index));
+        this.timetableGrid = new TimetableGrid(config, this.allCourses, (index) => this._handleTimetableSelect(index));
         this.detailsPanel = new DetailsPanel();
         this.actionHandler = new ActionHandler();
         
@@ -112,6 +112,11 @@ export class UIManager {
     }
 
     _handleTimetableSelect(index) {
+        if (index === -1) {
+            this.currentIndex = -1;
+            this.detailsPanel.clear();
+            return;
+        }
         this.currentIndex = index;
         const selectedSchedule = this.schedules[index];
         if (selectedSchedule) {
