@@ -100,6 +100,18 @@ export function calculateScores(schedule) {
     schedule.morningScore = 0;
     schedule.dayScore = Array(config.days.length).fill(0);
     schedule.shortDayScore = 0;
+    schedule.slotAvoidanceScore = 0;
+
+    const labDays = new Set();
+    schedule.selection.forEach(section => {
+        if (section.labBlocks.length > 0) {
+            section.labBlocks.forEach(block => {
+                const dayIndex = Math.floor(block / config.totalHoursPerDay);
+                labDays.add(dayIndex);
+            });
+        }
+    });
+    schedule.labSpreadScore = labDays.size;
 
     for (let d = 0; d < config.days.length; d++) {
         let firstClass = -1;

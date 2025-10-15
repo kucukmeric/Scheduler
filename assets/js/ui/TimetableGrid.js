@@ -82,14 +82,19 @@ export class TimetableGrid {
                 const bitPosition = blockIndex % this.config.maskChunkSize;
                 const isOccupied = (schedule.mask[maskIndex] & (1 << bitPosition)) !== 0;
 
+                let cellClass = '';
+                let cellStyle = '';
                 if (isOccupied && h !== this.config.lunchBlockIndex) {
                     const section = schedule.selection.find(s => s.blocks.includes(blockIndex));
                     const courseCode = section.id.split('-')[0];
-                    const color = courseColorMap.get(courseCode) || '#cccccc';
-                    tableContent += `<td style="background-color:${color};"></td>`;
-                } else {
-                    tableContent += h === this.config.lunchBlockIndex ? `<td><div class="card-lunch-cell"></div></td>` : `<td></td>`;
+                    cellStyle = `background-color: ${courseColorMap.get(courseCode) || '#cccccc'};`;
+                    if (section.labBlocks.includes(blockIndex)) {
+                        cellClass = 'is-lab-small';
+                    }
+                } else if (h === this.config.lunchBlockIndex) {
+                    cellClass = 'card-lunch-cell';
                 }
+                tableContent += `<td class="${cellClass}" style="${cellStyle}"></td>`;
             }
             tableContent += `</tr>`;
         }
@@ -119,41 +124,41 @@ export class TimetableGrid {
         if (!schedule) return;
 
         let tableContent = `<thead><tr><th>Time</th>${this.config.days.map(d => `<th>${d}</th>`).join('')}</tr></thead><tbody>`;
-        const processedBlocks = new Set();
         
         for (let h = 0; h < this.config.hours.length; h++) {
             tableContent += `<tr><th>${this.config.hours[h]}</th>`;
             for (let d = 0; d < this.config.days.length; d++) {
                 const blockIndex = d * this.config.totalHoursPerDay + h;
-                if (processedBlocks.has(blockIndex)) continue;
                 
+                let cellClass = '';
+                let cellContent = '';
+                let cellStyle = '';
+
                 const maskIndex = Math.floor(blockIndex / this.config.maskChunkSize);
                 const bitPosition = blockIndex % this.config.maskChunkSize;
                 const isOccupied = (schedule.mask[maskIndex] & (1 << bitPosition)) !== 0;
 
                 if (isOccupied && h !== this.config.lunchBlockIndex) {
                     const section = schedule.selection.find(s => s.blocks.includes(blockIndex));
-                    let rowspan = 1;
-                    processedBlocks.add(blockIndex);
-                    for (let lookaheadHour = h + 1; lookaheadHour < this.config.hours.length; lookaheadHour++) {
-                        if (section.blocks.includes(d * this.config.totalHoursPerDay + lookaheadHour)) {
-                            rowspan++;
-                            processedBlocks.add(d * this.config.totalHoursPerDay + lookaheadHour);
-                        } else break;
-                    }
-
+                    const prevBlockIndex = d * this.config.totalHoursPerDay + (h - 1);
                     const courseCode = section.id.split('-')[0];
-                    const course = this.allCourses.find(c => c.code === courseCode);
-                    const isLab = section.labBlocks.includes(blockIndex);
                     const color = this.courseColorMap.get(courseCode) || '#cccccc';
-                    const sectionNum = section.id.split('-')[1];
-                    const courseName = course ? course.name : '';
                     
-                    const cellInnerContent = `<div class="course-color-indicator" style="background-color: ${color};"></div><div class="card-cell-details"><strong>${courseName} ${isLab ? '(Lab)' : ''}</strong><div class="details-sub-line"><span>${section.instructor}</span><em style="color: ${color};">Sec ${sectionNum}</em></div></div>`;
-                    tableContent += `<td rowspan="${rowspan}">${cellInnerContent}</td>`;
-                } else {
-                    tableContent += h === this.config.lunchBlockIndex ? `<td><div class="card-lunch-cell"></div></td>` : `<td></td>`;
+                    if (h === 0 || !section.blocks.includes(prevBlockIndex)) {
+                        cellClass = 'is-course-start';
+                        const course = this.allCourses.find(c => c.code === courseCode);
+                        const isLab = section.labBlocks.includes(blockIndex);
+                        const sectionNum = section.id.split('-')[1];
+                        const courseName = course ? course.name : '';
+                        cellContent = `<div class="course-color-indicator" style="background-color: ${color};"></div><div class="card-cell-details"><strong>${courseName} ${isLab ? '(Lab)' : ''}</strong><div class="details-sub-line"><span>${section.instructor}</span><em style="color: ${color};">Sec ${sectionNum}</em></div></div>`;
+                    } else {
+                        cellClass = 'is-course-continuation';
+                        cellStyle = `style="--course-color: ${color}"`;
+                    }
+                } else if (h === this.config.lunchBlockIndex) {
+                    cellClass = 'card-lunch-cell';
                 }
+                tableContent += `<td class="${cellClass}" ${cellStyle}>${cellContent}</td>`;
             }
             tableContent += `</tr>`;
         }

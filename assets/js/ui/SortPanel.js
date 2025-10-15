@@ -1,7 +1,8 @@
 export class SortPanel {
-    constructor(sorterConfig, daysConfig, onUpdateCallback) {
+    constructor(sorterConfig, daysConfig, hoursConfig, onUpdateCallback) {
         this.allSorters = sorterConfig;
         this.daysOfWeek = daysConfig;
+        this.hoursOfDay = hoursConfig;
         this.onUpdate = onUpdateCallback;
         
         this.activeRules = [];
@@ -37,23 +38,25 @@ export class SortPanel {
         let pickerHtml = '';
         if (rule.id === 'avoid-day') {
             const currentDay = this.daysOfWeek[rule.dayIndex];
+            pickerHtml = `<div class="picker-wrapper"><div class="list-item-picker"><span>${currentDay}</span></div><div class="dropdown-menu">${this.daysOfWeek.map((day, index) => `<div class="dropdown-item ${rule.dayIndex === index ? 'selected' : ''}" data-day-index="${index}">${day}</div>`).join('')}</div></div>`;
+        }
+        if (rule.id === 'avoid-slot') {
+            const currentDay = this.daysOfWeek[rule.dayIndex];
+            const currentHour = this.hoursOfDay[rule.hourIndex];
             pickerHtml = `
-                <div class="picker-wrapper">
-                    <div class="list-item-picker">
-                        <span>${currentDay}</span>
-                    </div>
-                    <div class="dropdown-menu">
-                        ${this.daysOfWeek.map((day, index) => `
-                            <div class="dropdown-item ${rule.dayIndex === index ? 'selected' : ''}" data-day-index="${index}">${day}</div>
-                        `).join('')}
-                    </div>
-                </div>`;
+                <div class="picker-wrapper day-picker">
+                    <div class="list-item-picker"><span>${currentDay}</span></div>
+                    <div class="dropdown-menu">${this.daysOfWeek.map((day, index) => `<div class="dropdown-item ${rule.dayIndex === index ? 'selected' : ''}" data-day-index="${index}">${day}</div>`).join('')}</div>
+                </div>
+                <div class="picker-wrapper hour-picker">
+                    <div class="list-item-picker"><span>${currentHour}</span></div>
+                    <div class="dropdown-menu wide">${this.hoursOfDay.map((hour, index) => `<div class="dropdown-item ${rule.hourIndex === index ? 'selected' : ''}" data-hour-index="${index}">${hour}</div>`).join('')}</div>
+                </div>
+            `;
         }
         
         ruleEl.innerHTML = `
-            <div class="list-item-action delete-rule-btn">
-                <i class="fas fa-trash-alt"></i>
-            </div>
+            <div class="list-item-action delete-rule-btn"><i class="fas fa-trash-alt"></i></div>
             <div class="list-item-main">${rule.displayName}</div>
             ${pickerHtml}
         `;
@@ -120,6 +123,7 @@ export class SortPanel {
         this.container.addEventListener('click', e => {
             const deleteBtn = e.target.closest('.delete-rule-btn');
             const dayDropdownItem = e.target.closest('.dropdown-item[data-day-index]');
+            const hourDropdownItem = e.target.closest('.dropdown-item[data-hour-index]');
 
             if (deleteBtn) {
                 const instanceId = parseInt(deleteBtn.closest('.list-item').dataset.instanceId, 10);
@@ -139,12 +143,22 @@ export class SortPanel {
                     this.onUpdate();
                 }
             }
+
+            if (hourDropdownItem) {
+                const listItem = hourDropdownItem.closest('.list-item');
+                const instanceId = parseInt(listItem.dataset.instanceId, 10);
+                const newHourIndex = parseInt(hourDropdownItem.dataset.hourIndex, 10);
+                const rule = this.activeRules.find(r => r.instanceId === instanceId);
+                if (rule) {
+                    rule.hourIndex = newHourIndex;
+                    this.render();
+                    this.onUpdate();
+                }
+            }
         });
 
         this.container.addEventListener('dragstart', e => {
-            if (e.target.classList.contains('list-item')) {
-                e.target.classList.add('dragging');
-            }
+            if (e.target.classList.contains('list-item')) e.target.classList.add('dragging');
         });
 
         this.container.addEventListener('dragend', e => {
@@ -160,12 +174,9 @@ export class SortPanel {
             e.preventDefault();
             const afterElement = this._getDragAfterElement(e.clientY);
             const dragging = document.querySelector('.dragging');
-if (dragging) {
-                if (afterElement == null) {
-                    this.container.appendChild(dragging);
-                } else {
-                    this.container.insertBefore(dragging, afterElement);
-                }
+            if (dragging) {
+                if (afterElement == null) this.container.appendChild(dragging);
+                else this.container.insertBefore(dragging, afterElement);
             }
         });
     }

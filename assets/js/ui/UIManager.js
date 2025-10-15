@@ -22,7 +22,7 @@ export class UIManager {
     init() {
         this.modal = new Modal(this.departments, (courseCode) => this.coursePanel.addCourse(courseCode));
         this.coursePanel = new CoursePanel(this.allCourses, () => this._handleUpdate());
-        this.sortPanel = new SortPanel(config.sorters, config.days, () => this._handleUpdate());
+        this.sortPanel = new SortPanel(config.sorters, config.days, config.hours, () => this._handleUpdate());
         
         const getExportDataCallback = () => this.coursePanel.getUserCourses();
         this.timetableGrid = new TimetableGrid(
@@ -103,10 +103,24 @@ export class UIManager {
 
     _applySorters(schedules) {
         const activeSortRules = this.sortPanel.getActiveRules();
+        
+        schedules.forEach(schedule => {
+            schedule.slotAvoidanceScore = 0;
+            const rules = activeSortRules.filter(r => r.id === 'avoid-slot');
+            rules.forEach(rule => {
+                const blockIndex = rule.dayIndex * config.totalHoursPerDay + rule.hourIndex;
+                const maskIndex = Math.floor(blockIndex / config.maskChunkSize);
+                const bitPosition = blockIndex % config.maskChunkSize;
+                if ((schedule.mask[maskIndex] & (1 << bitPosition)) !== 0) {
+                    schedule.slotAvoidanceScore += 1;
+                }
+            });
+        });
+
         return schedules.sort((a, b) => {
             for (const sorter of activeSortRules) {
                 let scoreA, scoreB;
-                if (sorter.dayIndex !== undefined) {
+                if (sorter.id === 'avoid-day') {
                     scoreA = a.dayScore[sorter.dayIndex];
                     scoreB = b.dayScore[sorter.dayIndex];
                 } else {

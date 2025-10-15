@@ -93,7 +93,6 @@
 .timetable-modal-body th, 
 .timetable-modal-body td {
     border: 1px solid #f0f0f0;
-    text-align: left;
     vertical-align: top;
     padding: 0;
     position: relative;
@@ -103,11 +102,23 @@
     height: 60px;
 }
 
+.timetable-modal-body .is-course-continuation::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--course-color, #e4e4e7);
+}
+
 .course-color-indicator {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
+    left: -1px;
+    right: -1px;
     height: 4px;
 }
 
