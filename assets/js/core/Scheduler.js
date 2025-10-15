@@ -1,16 +1,18 @@
 import { config } from './config.js';
 
 export class Section {
-    constructor(id, instructor, blocks) {
+    constructor(id, instructor, lectures, labs) {
         this.id = id;
         this.instructor = instructor;
-        this.blocks = blocks;
+        this.lectureBlocks = lectures || [];
+        this.labBlocks = labs || [];
+        this.blocks = [...this.lectureBlocks, ...this.labBlocks];
         
         const totalBlocks = config.days.length * config.totalHoursPerDay;
         const numChunks = Math.ceil(totalBlocks / config.maskChunkSize);
         this.mask = new Array(numChunks).fill(0);
 
-        for (const blockIndex of blocks) {
+        for (const blockIndex of this.blocks) {
             const maskIndex = Math.floor(blockIndex / config.maskChunkSize);
             const bitPosition = blockIndex % config.maskChunkSize;
             this.mask[maskIndex] |= (1 << bitPosition);

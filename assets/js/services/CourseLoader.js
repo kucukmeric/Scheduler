@@ -12,7 +12,7 @@ export async function load() {
             dept.courses.forEach(course => {
                 const hydratedCourse = { 
                     ...course, 
-                    sections: course.sections.map(s => new Section(`${course.code}-${s.num}`, s.instructor, s.blocks)) 
+                    sections: course.sections.map(s => new Section(`${course.code}-${s.num}`, s.instructor, s.lectures, s.labs)) 
                 };
                 allCourses.push(hydratedCourse);
             });

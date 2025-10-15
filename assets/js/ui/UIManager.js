@@ -23,7 +23,15 @@ export class UIManager {
         this.modal = new Modal(this.departments, (courseCode) => this.coursePanel.addCourse(courseCode));
         this.coursePanel = new CoursePanel(this.allCourses, () => this._handleUpdate());
         this.sortPanel = new SortPanel(config.sorters, config.days, () => this._handleUpdate());
-        this.timetableGrid = new TimetableGrid(config, this.allCourses, (index) => this._handleTimetableSelect(index));
+        
+        const getExportDataCallback = () => this.coursePanel.getUserCourses();
+        this.timetableGrid = new TimetableGrid(
+            config, 
+            this.allCourses, 
+            (index) => this._handleTimetableSelect(index),
+            getExportDataCallback
+        );
+
         this.detailsPanel = new DetailsPanel();
         this.actionHandler = new ActionHandler();
         
@@ -60,6 +68,9 @@ export class UIManager {
     }
 
     _handleUpdate() {
+        this.currentIndex = -1;
+        this._handleTimetableSelect(-1); 
+
         const userCourses = this.coursePanel.getUserCourses();
 
         this.courseColorMap.clear();
@@ -74,23 +85,20 @@ export class UIManager {
         if (userCourses.length === 0) {
             this.schedules = [];
             this.timetableGrid.setInitialFeedback('Please add a course to begin.');
-            this.detailsPanel.clear();
-            this._updateGlobalFeedback('');
             return;
         }
 
-        const generationResult = generateSchedules(userCourses, this.allCourses);
-        this.schedules = this._applySorters(generationResult.schedules);
-        this.currentIndex = -1;
+        this.timetableGrid.setInitialFeedback('Generating possible schedules...');
         
-        this.timetableGrid.render(this.schedules, this.courseColorMap);
-        this.detailsPanel.clear();
-        
-        let feedbackMessage = `Generated ${this.schedules.length} possible schedules.`;
-        if (generationResult.warnings.length > 0) {
-            feedbackMessage += ` ${generationResult.warnings.join(' ')}`;
-        }
-        this._updateGlobalFeedback(feedbackMessage);
+        setTimeout(() => {
+            const generationResult = generateSchedules(userCourses, this.allCourses);
+            this.schedules = this._applySorters(generationResult.schedules);
+            this.timetableGrid.setSchedules(this.schedules, this.courseColorMap);
+            
+            let feedbackMessage = `Generated ${this.schedules.length} possible schedules.`;
+            if (generationResult.warnings.length > 0) feedbackMessage += ` ${generationResult.warnings.join(' ')}`;
+            this._updateGlobalFeedback(feedbackMessage);
+        }, 0);
     }
 
     _applySorters(schedules) {
@@ -112,15 +120,22 @@ export class UIManager {
     }
 
     _handleTimetableSelect(index) {
-        if (index === -1) {
-            this.currentIndex = -1;
-            this.detailsPanel.clear();
-            return;
-        }
         this.currentIndex = index;
-        const selectedSchedule = this.schedules[index];
-        if (selectedSchedule) {
-            this.detailsPanel.render(selectedSchedule);
+        const downloadBtn = document.getElementById('download-btn');
+        const exportBtn = document.getElementById('export-btn');
+
+        if (index === -1) {
+            this.detailsPanel.clear();
+            downloadBtn.disabled = true;
+            exportBtn.disabled = true;
+            if(this.timetableGrid) this.timetableGrid.clearHighlight();
+        } else {
+            const selectedSchedule = this.schedules[index];
+            if (selectedSchedule) {
+                this.detailsPanel.render(selectedSchedule);
+                downloadBtn.disabled = false;
+                exportBtn.disabled = false;
+            }
         }
     }
     
